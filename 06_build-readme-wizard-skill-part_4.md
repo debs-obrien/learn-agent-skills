@@ -1,5 +1,11 @@
 # Phase 4: Validate and finish
 
+**Time estimate:** 30-60 minutes
+
+**Success check:** You can generate a README end-to-end and `check_readme.sh` passes.
+
+**Prerequisites:** Bash, `grep`, `sed`, and `curl`. If you want GitHub API lookups, set `GITHUB_TOKEN` to avoid rate limits. On Windows, use WSL for the scripts.
+
 #### Step 10: Add a validation script
 
 We want a quick way to check if a generated README has all the expected sections. This is another good use of `scripts/`: a repeatable check that gives us a pass/fail report.
@@ -45,6 +51,12 @@ bash .agents/skills/readme-wizard/scripts/check_readme.sh README.md
 ```
 
 If everything passes, great! If something fails, that's the build loop in action. Fix the issue and test again.
+
+### Troubleshooting (if validation fails)
+
+- Confirm your README follows the template sections in `assets/readme-template.md`
+- Ensure badges are shields.io and use `style=for-the-badge`
+- If a section is missing (docs, contributors, star history), update the SKILL.md rules and re-run
 
 When we built this skill, we went through several rounds of fixes:
 - **Git remote parsing**: HTTPS URLs weren't extracting owner/repo correctly

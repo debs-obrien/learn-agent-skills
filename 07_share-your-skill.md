@@ -2,17 +2,24 @@
 
 Your skill is just files in a folder. To share it, push it to a GitHub repo so anyone can install it with a single command.
 
+**Time estimate:** 20-30 minutes
+
+**Success check:** You can install the skill from GitHub and it triggers in a new chat.
+
 ### Push to GitHub
 
-Create a new repo for your skill. The skills CLI discovers `SKILL.md` files at the root of a repo automatically, so your repo structure should look like this:
+Create a new repo for your skill. Keep the skill in the `.agents/skills/` structure, so your repo should look like this:
 
 ```
-readme-wizard/           ← repo root
-├── SKILL.md
-├── scripts/
-├── references/
-├── assets/
-└── evals/
+my-project/             ← repo root
+└── .agents/
+	└── skills/
+		└── readme-wizard/
+			├── SKILL.md
+			├── scripts/
+			├── references/
+			├── assets/
+			└── evals/
 ```
 
 Tell your agent:
@@ -47,6 +54,20 @@ By default, skills install to **project scope** (e.g., `.agents/skills/` in the 
 
 ```bash
 npx skills add YOUR-USERNAME/readme-wizard -g
+```
+
+### Make your skill global (available in every project)
+
+Global skills are installed into your home directory so they work in any project without copying files. This is great for personal workflows or team-wide conventions.
+
+Tell your agent:
+
+> Install my `readme-wizard` skill globally so it is available in every project. Use the skills CLI and the global flag, then confirm the install location.
+
+If you want to verify it manually, run:
+
+```bash
+npx skills list
 ```
 
 ### Install for specific agents
@@ -102,6 +123,12 @@ Skills are discovered automatically by agents that support the [Agent Skills spe
 **Claude Code**: Skills in `.claude/skills/` are discovered automatically at session start.
 
 For both agents, start a **new session** after installing a skill.
+
+### Troubleshooting (if the skill doesn't install or trigger)
+
+- Verify your repo has `SKILL.md` at the repo root
+- Re-run `npx skills add ...` and choose project scope if you're testing locally
+- Start a new chat session so the agent re-discovers skills
 
 ### Key principles
 

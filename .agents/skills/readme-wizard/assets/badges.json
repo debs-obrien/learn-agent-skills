@@ -1,0 +1,57 @@
+{
+  "style": "for-the-badge",
+  "status": {
+    "license": {
+      "url": "https://img.shields.io/github/license/{{OWNER}}/{{REPO}}?style=for-the-badge",
+      "link": "https://github.com/{{OWNER}}/{{REPO}}/blob/main/LICENSE"
+    },
+    "version": {
+      "url": "https://img.shields.io/github/v/release/{{OWNER}}/{{REPO}}?style=for-the-badge",
+      "link": "https://github.com/{{OWNER}}/{{REPO}}/releases"
+    },
+    "build": {
+      "url": "https://img.shields.io/github/actions/workflow/status/{{OWNER}}/{{REPO}}/{{WORKFLOW_FILE}}?style=for-the-badge",
+      "link": "https://github.com/{{OWNER}}/{{REPO}}/actions"
+    },
+    "stars": {
+      "url": "https://img.shields.io/github/stars/{{OWNER}}/{{REPO}}?style=for-the-badge",
+      "link": "https://github.com/{{OWNER}}/{{REPO}}/stargazers"
+    }
+  },
+  "social": {
+    "youtube": {
+      "url": "https://img.shields.io/youtube/channel/subscribers/{{YOUTUBE_CHANNEL_ID}}?style=for-the-badge&logo=youtube&label=YouTube",
+      "link": "https://youtube.com/{{YOUTUBE_HANDLE}}"
+    },
+    "discord": {
+      "url": "https://img.shields.io/discord/{{DISCORD_SERVER_ID}}?style=for-the-badge&logo=discord&label=Discord",
+      "link": "https://discord.gg/{{DISCORD_INVITE}}"
+    },
+    "twitter": {
+      "url": "https://img.shields.io/badge/Twitter-{{TWITTER_HANDLE}}-1DA1F2?style=for-the-badge&logo=x&logoColor=white",
+      "link": "https://twitter.com/{{TWITTER_HANDLE}}"
+    },
+    "linkedin": {
+      "url": "https://img.shields.io/badge/LinkedIn-{{LINKEDIN_NAME}}-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white",
+      "link": "https://linkedin.com/in/{{LINKEDIN_HANDLE}}"
+    },
+    "bluesky": {
+      "url": "https://img.shields.io/badge/Bluesky-{{BLUESKY_HANDLE}}-0085FF?style=for-the-badge&logo=bluesky&logoColor=white",
+      "link": "https://bsky.app/profile/{{BLUESKY_HANDLE}}"
+    },
+    "twitch": {
+      "url": "https://img.shields.io/badge/Twitch-{{TWITCH_HANDLE}}-9146FF?style=for-the-badge&logo=twitch&logoColor=white",
+      "link": "https://twitch.tv/{{TWITCH_HANDLE}}"
+    }
+  },
+  "extras": {
+    "npm_downloads": {
+      "url": "https://img.shields.io/npm/dm/{{PACKAGE_NAME}}?style=for-the-badge",
+      "link": "https://www.npmjs.com/package/{{PACKAGE_NAME}}"
+    },
+    "pypi_downloads": {
+      "url": "https://img.shields.io/pypi/dm/{{PACKAGE_NAME}}?style=for-the-badge",
+      "link": "https://pypi.org/project/{{PACKAGE_NAME}}"
+    }
+  }
+}

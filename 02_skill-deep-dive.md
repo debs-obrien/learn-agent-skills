@@ -2,6 +2,10 @@
 
 Now that you know what skills are, let's look inside one. We'll use a skill called **README Wizard** as our example. It transforms any repo's README into a polished, professional one.
 
+**Time estimate:** 15-20 minutes
+
+**Success check:** You can explain what goes in `SKILL.md`, `scripts/`, `references/`, `assets/`, and `evals/`.
+
 ### The folder structure
 
 ![Anatomy of a Skill](assets/anatomy-of-a-skill.png)

@@ -2,6 +2,10 @@
 
 Time to build the README Wizard from scratch. We'll start simple, get something working, then improve it step by step. Along the way you'll see exactly why skills have the folder structure they do.
 
+**Time estimate:** 30-45 minutes for Phase 1
+
+**Success check:** The readme-wizard skill updates a README with badges, quick start, and project structure.
+
 ### The build loop
 
 This is the process we'll follow throughout:
@@ -77,4 +81,14 @@ The agent scans the project and improves the README based on the instructions we
 - It wrote the scanning logic from scratch instead of reusing anything
 
 That's OK. We have a working starting point. Now let's make it better.
+
+### Quick win checkpoint
+
+If you only need a simple skill, you can stop here. You already have a working `SKILL.md` that improves READMEs and a clear prompt you can reuse. Everything after this point is about making the skill more consistent and maintainable.
+
+### Troubleshooting (if it doesn't improve)
+
+- Verify the skill is in the project you are testing
+- Start a new chat session so the agent re-discovers the skill
+- Check the frontmatter `name:` matches the folder name exactly
 

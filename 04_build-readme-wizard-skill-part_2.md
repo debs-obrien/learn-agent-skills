@@ -1,5 +1,9 @@
 ### Phase 2: Add more detail
 
+**Time estimate:** 30-45 minutes
+
+**Success check:** The README output follows a consistent structure with standardized badge formats and tone.
+
 #### Step 4: Flesh out the SKILL.md
 
 The basic skill works but the output is inconsistent. Let's add more detail to the instructions: specific badge formats, best practices for writing tone, a template for the README structure, and clearer rules.
@@ -19,6 +23,12 @@ Tell your agent:
 > Improve the README for this project following the readme-wizard skill instructions.
 
 Much better! The badges are consistent, the structure follows the template, the tone is right. But look at the SKILL.md  file. It's getting long and hard to maintain. The badge templates, best practices, README structure, and diagram templates are all mixed in with the instructions. If you want to update a badge format, you're scrolling through 150+ lines. If someone wants to customize just the template, they have to edit the whole file.
+
+### Troubleshooting (if the output still looks inconsistent)
+
+- Re-run the prompt in a new chat session so the skill loads fresh
+- Confirm the badge URLs use `style=for-the-badge`
+- Make sure your SKILL.md includes explicit section order and tone guidance
 
 This is the problem that skill folders solve. By breaking the file into separate pieces:
 

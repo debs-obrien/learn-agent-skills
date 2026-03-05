@@ -1,6 +1,10 @@
 # Phase 3: Refactor into the skill structure
 
-> 🎬 **Video 4: Refactor Your Skill** (12-15 min) — [Watch on YouTube](#)
+**Time estimate:** 45-90 minutes
+
+**Success check:** Your skill folder includes references, assets, and scripts, and the scan script outputs JSON.
+
+> 🎬 **Video 4: Refactor Your Skill** (12-15 min) — [Watch on YouTube](#) *(link coming soon)*
 
 
 Now we're going to break the bloated SKILL.md into separate files. Each extraction has a clear reason. By the end, you'll understand exactly why skills have the folder structure they do.
@@ -54,3 +58,15 @@ bash .agents/skills/readme-wizard/scripts/scan_project.sh /path/to/your/project
 ```
 
 You should see clean JSON with all the detected metadata.
+
+### Prerequisites and limits
+
+- The script assumes bash, `grep`, `sed`, and `curl` are available
+- GitHub API lookups can hit rate limits; set `GITHUB_TOKEN` for reliability
+- On Windows, use WSL to run the script
+
+### Troubleshooting (if the script fails or returns empty JSON)
+
+- Check file permissions: `chmod +x .agents/skills/readme-wizard/scripts/scan_project.sh`
+- Run it with a full path to the project directory
+- If GitHub API fails, verify your `GITHUB_TOKEN` or remove the API step temporarily

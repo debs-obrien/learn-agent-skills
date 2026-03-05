@@ -2,6 +2,10 @@
 
 Learn what agent skills are, how they work, and build one from scratch using your AI coding agent. This tutorial covers **GitHub Copilot** and **Claude Code**, but skills work across many agents. By the end, you'll have a working skill that transforms any repo's README into a polished, professional one.
 
+**Time estimate:** 20-30 minutes
+
+**Success check:** You can say "Good morning" in a new chat and the agent responds using your `good-morning` skill.
+
 ### What you'll build
 
 We're going to build a skill called **README Wizard** that takes a basic README like this:
@@ -19,8 +23,7 @@ And transforms it into something like this:
 
 A polished README with a hero section, badges with live subscriber and member counts, quick start, project structure, Mermaid diagrams, documentation table, contributor avatars, social links, and a star history chart.
 
-<!-- TODO: Update this link once the repo is published -->
-You can see the finished skill and example output in the [README Wizard repo](https://github.com/debs-obrien/readme-wizard).
+You can see the finished skill and example output in the [README Wizard repo](https://github.com/debs-obrien/readme-wizard) *(link coming soon)*.
 
 ---
 
@@ -36,7 +39,7 @@ You can see the finished skill and example output in the [README Wizard repo](ht
 
 ## Part 1: What Are Skills?
 
-> 🎬 **Video 1: What Are Agent Skills?** (5-7 min) — [Watch on YouTube](#)
+> 🎬 **Video 1: What Are Agent Skills?** (5-7 min) — [Watch on YouTube](#) *(link coming soon)*
 
 ### The problem
 
@@ -95,7 +98,7 @@ description: A skill that responds to good morning with a cheerful greeting
 
 Two important things here:
 
-1. **The name must match the folder name.** If the folder is called `good-morning`, the name must be `good-morning`. If they don't match, your editor will flag it.
+1. **The name must match the folder name.** If the folder is called `good-morning`, the name must be `good-morning`. If they don't match, the skill will not load.
 
 2. **The name and description are always in context.** Every time you're working in this project, the agent sees the name and description so it knows what skills are available. Keep the description short and specific, this is how the agent knows when to use the skill.
 
@@ -142,6 +145,12 @@ The agent finds the skill, reads the `SKILL.md` file, and responds.
 
 Skills work across agents. The same `SKILL.md` file works in Copilot, Claude Code, and others. Each agent discovers the skill, reads the instructions, and follows them.
 
+### Troubleshooting (if it doesn't trigger)
+
+- Start a **new chat session** after creating or moving skills
+- Confirm the folder name matches the `name:` in frontmatter exactly
+- Double-check the path for your agent (`.agents/skills/` vs `.claude/skills/`)
+
 That's a skill in action. Now imagine instead of "good morning", the instructions told the agent how to generate a polished README, write commit messages in your team's format, or review code against your standards. Same idea, bigger impact.
 
 ### How skills get loaded
@@ -166,6 +175,10 @@ Skills can be installed at two levels:
 - **Personal**: in your home directory, available from anywhere
 
 Each agent checks slightly different locations:
+
+**Quick pick:**
+- Use `.agents/skills/` for GitHub Copilot in VS Code
+- Use `.claude/skills/` for Claude Code
 
 **GitHub Copilot (VS Code)**:
 ```
