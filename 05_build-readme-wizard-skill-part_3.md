@@ -81,6 +81,10 @@ You should see clean JSON with all the detected metadata.
 - Run it with a full path to the project directory
 - If GitHub API fails, verify your `GITHUB_TOKEN` or remove the API step temporarily
 
+## Stuck? Check the Reference Code
+
+If your files are getting a little messy or you aren't sure if the folder structure is right, remember that **the finished version of this skill is included right here in the repository!** You can peek at the `.agents/skills/readme-wizard/` folder anytime to compare your work against the final "perfect" version.
+
 ## Next Steps
 
 Your skill is now properly structured. Let's add validation and test it end-to-end.

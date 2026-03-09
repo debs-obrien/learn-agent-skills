@@ -92,7 +92,7 @@ Look at your skill folder now:
 
 Every folder earned its place. We didn't start with this structure. We started with one file, hit the limits, and extracted pieces as we needed them. That's how real skills get built.
 
-Want to compare your skill against ours? Check out the finished [README Wizard skill](https://github.com/debs-obrien/learn-agent-skills/tree/main/.agents/skills/readme-wizard) with all the files, scripts, and examples.
+Want to compare your skill against ours? Check out the finished **README Wizard skill** right here in this repository under the `.agents/skills/readme-wizard/` folder! It includes all the files, scripts, and examples we've built.
 
 ## Next Steps
 
