@@ -7,11 +7,11 @@ A hands-on tutorial series for building agent skills — reusable instructions t
 [![License](https://img.shields.io/github/license/debs-obrien/learn-agent-skills?style=for-the-badge)](LICENSE)
 [![Stars](https://img.shields.io/github/stars/debs-obrien/learn-agent-skills?style=for-the-badge)](https://github.com/debs-obrien/learn-agent-skills/stargazers)
 
+[![What Are Agent Skills?](https://img.youtube.com/vi/2REiUlciObk/maxresdefault.jpg)](https://youtu.be/2REiUlciObk?si=im87wwgj8vcN91br)
+
 </div>
 
-## What is this?
-
-Learn Agent Skills teaches you how to build agent skills from scratch. Skills are reusable instructions that teach AI coding agents (GitHub Copilot, Claude Code, Cursor, and [40+ others](https://skills.sh)) how to perform specific tasks well. Follow the tutorials in order and build a fully working README Wizard skill by the end.
+Learn Agent Skills teaches you how to build agent skills from scratch. Skills are reusable instructions that teach AI coding agents (GitHub Copilot, Claude Code, Cursor, and others) how to perform specific tasks well. Follow the tutorials in order and build a fully working README Wizard skill by the end.
 
 ![Before vs After](assets/before-vs-after.png)
 
@@ -73,9 +73,11 @@ Once you've built the README Wizard (or if you just want to try it), you can use
 npx skills add debs-obrien/readme-wizard
 ```
 
-**Then open any project and tell your agent:**
+**Then open any project and copy this prompt:**
 
-> Improve the README for this project using the readme-wizard skill.
+```
+Improve the README for this project using the readme-wizard skill.
+```
 
 That's it. The agent will scan the project, read the best practices, pick the right badges, and generate a polished README.
 
@@ -86,11 +88,15 @@ git clone https://github.com/OWNER/REPO.git
 cd REPO
 ```
 
-> Improve the README for this project using the readme-wizard skill.
+```
+Improve the README for this project using the readme-wizard skill.
+```
 
 **Or be more specific:**
 
-> Improve the README for this project. Run the scan script first to detect the project metadata, then follow the readme-wizard skill instructions. Make sure to include badges, a quick start section, and a project structure tree.
+```
+Improve the README for this project. Run the scan script first to detect the project metadata, then follow the readme-wizard skill instructions. Make sure to include badges, a quick start section, and a project structure tree.
+```
 
 ## Contributing
 

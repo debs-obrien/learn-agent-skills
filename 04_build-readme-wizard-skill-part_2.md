@@ -1,16 +1,16 @@
 ### Phase 2: Add more detail
 
-**Time estimate:** 30-45 minutes
-
 **Success check:** The README output follows a consistent structure with standardized badge formats and tone.
 
 #### Step 4: Flesh out the SKILL.md
 
 The basic skill works but the output is inconsistent. Let's add more detail to the instructions: specific badge formats, best practices for writing tone, a template for the README structure, and clearer rules.
 
-Tell your agent:
+Copy this prompt:
 
-> Update the readme-wizard SKILL.md to include more detail. Add a "Best Practices" section with guidance on README structure, section order, and writing tone. Add a "Badge Guide" with the exact shields.io URL formats for status badges (license, version, CI, stars) and social badges (YouTube with subscriber count, Discord with member count, Twitter, LinkedIn, Bluesky, Twitch) all using `style=for-the-badge`. Add a "README Structure" section listing the exact sections in order with a description of what each one contains. Add a "Mermaid Diagrams" section with templates for common project types.
+```
+Update the readme-wizard SKILL.md to include more detail. Add a "Best Practices" section with guidance on README structure, section order, and writing tone. Add a "Badge Guide" with the exact shields.io URL formats for status badges (license, version, CI, stars) and social badges (YouTube with subscriber count, Discord with member count, Twitter, LinkedIn, Bluesky, Twitch) all using style=for-the-badge. Add a "README Structure" section listing the exact sections in order with a description of what each one contains. Add a "Mermaid Diagrams" section with templates for common project types.
+```
 
 The agent updates the SKILL.md with all this detail. Open it and look at the file size. It's probably 150+ lines now. All the badge formats, best practices, structure guide, and diagram templates are inline.
 
@@ -18,9 +18,11 @@ The agent updates the SKILL.md with all this detail. Open it and look at the fil
 
 Let's test the improved version.
 
-Tell your agent:
+Copy this prompt:
 
-> Improve the README for this project following the readme-wizard skill instructions.
+```
+Improve the README for this project following the readme-wizard skill instructions.
+```
 
 Much better! The badges are consistent, the structure follows the template, the tone is right. But look at the SKILL.md  file. It's getting long and hard to maintain. The badge templates, best practices, README structure, and diagram templates are all mixed in with the instructions. If you want to update a badge format, you're scrolling through 150+ lines. If someone wants to customize just the template, they have to edit the whole file.
 

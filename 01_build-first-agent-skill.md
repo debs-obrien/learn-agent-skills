@@ -2,8 +2,6 @@
 
 Learn what agent skills are, how they work, and build one from scratch using your AI coding agent. This tutorial covers **GitHub Copilot** and **Claude Code**, but skills work across many agents. By the end, you'll have a working skill that transforms any repo's README into a polished, professional one.
 
-**Time estimate:** 20-30 minutes
-
 **Success check:** You can say "Good morning" in a new chat and the agent responds using your `good-morning` skill.
 
 ### What you'll build
@@ -39,7 +37,7 @@ You can see the finished skill and example output in the [README Wizard repo](ht
 
 ## Part 1: What Are Skills?
 
-> 🎬 **Video 1: What Are Agent Skills?** (5-7 min) — [Watch on YouTube](#) *(link coming soon)*
+[![What Are Agent Skills?](https://img.youtube.com/vi/2REiUlciObk/maxresdefault.jpg)](https://youtu.be/2REiUlciObk?si=im87wwgj8vcN91br)
 
 ### The problem
 
@@ -135,7 +133,9 @@ That's the complete skill. One file. A few lines of instructions. Make it as per
 
 Start a **new chat session** (skills are discovered at session start) and type:
 
-> Good morning
+```
+Good morning
+```
 
 The agent finds the skill, reads the `SKILL.md` file, and responds.
 

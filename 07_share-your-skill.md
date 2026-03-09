@@ -2,8 +2,6 @@
 
 Your skill is just files in a folder. To share it, push it to a GitHub repo so anyone can install it with a single command.
 
-**Time estimate:** 20-30 minutes
-
 **Success check:** You can install the skill from GitHub and it triggers in a new chat.
 
 ### Push to GitHub
@@ -22,9 +20,11 @@ my-project/             ← repo root
 			└── evals/
 ```
 
-Tell your agent:
+Copy this prompt:
 
-> Copy the readme-wizard skill folder from `.agents/skills/readme-wizard` into a new directory outside this project. Initialize it as a git repo and push it to a new GitHub repo called `readme-wizard` under my account.
+```
+Copy the readme-wizard skill folder from .agents/skills/readme-wizard into a new directory outside this project. Initialize it as a git repo and push it to a new GitHub repo called readme-wizard under my account.
+```
 
 Or do it manually:
 
@@ -60,9 +60,11 @@ npx skills add YOUR-USERNAME/readme-wizard -g
 
 Global skills are installed into your home directory so they work in any project without copying files. This is great for personal workflows or team-wide conventions.
 
-Tell your agent:
+Copy this prompt:
 
-> Install my `readme-wizard` skill globally so it is available in every project. Use the skills CLI and the global flag, then confirm the install location.
+```
+Install my readme-wizard skill globally so it is available in every project. Use the skills CLI and the global flag, then confirm the install location.
+```
 
 If you want to verify it manually, run:
 
