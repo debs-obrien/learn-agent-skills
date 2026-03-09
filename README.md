@@ -55,9 +55,11 @@ learn-agent-skills/
 ├── 05_build-readme-wizard-skill-part_3.md # Tutorial 5: Phase 3 — Refactor
 ├── 06_build-readme-wizard-skill-part_4.md # Tutorial 6: Phase 4 — Validate
 ├── 07_share-your-skill.md                 # Tutorial 7: Share it
-├── .github/
+├── .agents/
 │   └── skills/
-│       └── good-morning/                  # Example skill from Tutorial 1
+│       ├── good-morning/                  # Example skill from Tutorial 1
+│       │   └── SKILL.md
+│       └── readme-wizard/                 # README Wizard skill (Tutorials 3-6)
 │           └── SKILL.md
 ├── assets/                                # Images used in the tutorials
 ├── LICENSE
