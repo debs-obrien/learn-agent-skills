@@ -4,56 +4,86 @@ Your skill is just files in a folder. To share it, push it to a GitHub repo so a
 
 **Success check:** You can install the skill from GitHub and it triggers in a new chat.
 
-## Push to GitHub
+## Two Ways to Share
 
-Create a new repo for your skill. Keep the skill in the `.agents/skills/` structure, so your repo should look like this:
+| Approach | Best for | Install command |
+|----------|----------|-----------------|
+| **Subdirectory** | Tutorials, multi-skill repos | `npx skills add USER/REPO --skill skill-name` |
+| **Dedicated repo** | Standalone skills, easier discovery | `npx skills add USER/skill-name` |
+
+**Which should I choose?** If you're building a skill as part of a larger project (like this tutorial), use a subdirectory. If you want your skill to be easily discoverable on skills.sh, create a dedicated repo.
+
+---
+
+### Option A: Skill in a subdirectory
+
+Keep the skill inside an existing repo. Your skill is already here if you followed the tutorials:
 
 ```
-my-project/             ← repo root
+your-project/
 └── .agents/
-	└── skills/
-		└── readme-wizard/
-			├── SKILL.md
-			├── scripts/
-			├── references/
-			├── assets/
-			└── evals/
+    └── skills/
+        └── readme-wizard/
+            ├── SKILL.md
+            ├── scripts/
+            ├── references/
+            ├── assets/
+            └── evals/
 ```
 
-> **Claude Code users:** Your skill is in `.claude/skills/` — adjust the prompt below accordingly.
+Push your project to GitHub, then anyone can install the skill:
 
-Copy this prompt:
-
-```
-Copy the readme-wizard skill folder from .agents/skills/readme-wizard into a new directory outside this project. Initialize it as a git repo and push it to a new GitHub repo called readme-wizard under my account.
+```bash
+npx skills add YOUR-USERNAME/YOUR-REPO --skill readme-wizard
 ```
 
-## Install with the Skills CLI
+To see what skills are available in a repo:
 
-The [skills CLI](https://github.com/vercel-labs/skills) (`npx skills`) is the package manager for the open agent skills ecosystem. No installation required — just run it with `npx`.
+```bash
+npx skills add YOUR-USERNAME/YOUR-REPO --list
+```
 
-Anyone can now install your skill:
+> **Claude Code users:** Your skill is in `.claude/skills/` — the CLI handles this automatically.
+
+---
+
+### Option B: Dedicated repo
+
+Create a new repo just for the skill. The `SKILL.md` goes at the repo root:
+
+```
+readme-wizard/          ← repo root
+├── SKILL.md
+├── scripts/
+├── references/
+├── assets/
+└── evals/
+```
+
+Copy this prompt to create a dedicated repo:
+
+```
+Copy the readme-wizard skill folder contents from .agents/skills/readme-wizard into a new directory outside this project. Initialize it as a git repo and push it to a new GitHub repo called readme-wizard under my account. Put SKILL.md at the root, not in a subdirectory.
+```
+
+Then anyone can install with a clean command:
 
 ```bash
 npx skills add YOUR-USERNAME/readme-wizard
 ```
 
-The CLI will prompt you to choose which agents to install to and whether to symlink (recommended) or copy the files. It automatically detects which coding agents you have installed.
+---
 
-By default, skills install to **project scope** (e.g., `.agents/skills/` in the current project). To install globally so the skill is available across all projects, add the `-g` flag:
+## Install Globally
+
+By default, skills install to the current project. To make a skill available in every project, add the `-g` flag:
 
 ```bash
+# Subdirectory skill
+npx skills add YOUR-USERNAME/YOUR-REPO --skill readme-wizard -g
+
+# Dedicated repo skill
 npx skills add YOUR-USERNAME/readme-wizard -g
-```
-
-## Make Your Skill Global (available in every project)
-
-Global skills are installed into your home directory so they work in any project without copying files. This is great for personal workflows or team-wide conventions.
-
-Copy this prompt:
-
-```
-Install my readme-wizard skill globally so it is available in every project. Use the skills CLI and the global flag, then confirm the install location.
 ```
 
 To verify installation:
@@ -118,7 +148,9 @@ For both agents, start a **new session** after installing a skill.
 
 ## Troubleshooting (if the skill doesn't install or trigger)
 
-- Verify your repo has `SKILL.md` at the repo root
+- **Subdirectory skills**: Make sure you're using `--skill skill-name` flag
+- **Dedicated repo skills**: Verify `SKILL.md` is at the repo root
+- Run `npx skills add YOUR-USERNAME/YOUR-REPO --list` to see what skills are detected
 - Re-run `npx skills add ...` and choose project scope if you're testing locally
 - Start a new chat session so the agent re-discovers skills
 

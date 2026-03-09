@@ -74,7 +74,10 @@ You should see clean JSON with all the detected metadata.
 
 ## Troubleshooting
 
-- Check file permissions: `chmod +x .agents/skills/readme-wizard/scripts/scan_project.sh`
+- If the script won't run, make it executable. Copy this prompt:
+  ```
+  Make the scan_project.sh script executable.
+  ```
 - Run it with a full path to the project directory
 - If GitHub API fails, verify your `GITHUB_TOKEN` or remove the API step temporarily
 

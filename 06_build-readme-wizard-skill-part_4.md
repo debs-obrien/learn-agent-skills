@@ -35,7 +35,7 @@ Let's test the fully refactored skill end-to-end. The agent will now use the sca
 Copy this prompt:
 
 ```
-Improve the README for the project at /path/to/your/project. Use the readme-wizard skill: run the scan script first, then follow the SKILL.md instructions.
+Improve the README for this project. Use the readme-wizard skill: run the scan script first, then follow the SKILL.md instructions.
 ```
 
 The agent will:
@@ -92,7 +92,7 @@ Look at your skill folder now:
 
 Every folder earned its place. We didn't start with this structure. We started with one file, hit the limits, and extracted pieces as we needed them. That's how real skills get built.
 
-Want to compare your skill against ours? Check out the finished [README Wizard skill](https://github.com/debs-obrien/readme-wizard) with all the files, scripts, and examples.
+Want to compare your skill against ours? Check out the finished [README Wizard skill](https://github.com/debs-obrien/learn-agent-skills/tree/main/.agents/skills/readme-wizard) with all the files, scripts, and examples.
 
 ## Next Steps
 

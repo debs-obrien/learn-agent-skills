@@ -64,7 +64,7 @@ The agent writes a SKILL.md with all the instructions inline. Open it and take a
 
 ### Step 3: Test it
 
-Let's see if our basic skill works. We're going to ask the agent to improve the README for a real project using our skill. Open a project you want to test against (your own repo, or clone any public repo) and make sure the readme-wizard skill is in that project's `.agents/skills/` directory.
+Let's see if our basic skill works. We'll test it right here in this project — the skill is already in place.
 
 Copy this prompt:
 
