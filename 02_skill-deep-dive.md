@@ -2,17 +2,15 @@
 
 Now that you know what skills are, let's look inside one. We'll use a skill called **README Wizard** as our example. It transforms any repo's README into a polished, professional one.
 
-**Time estimate:** 15-20 minutes
-
 **Success check:** You can explain what goes in `SKILL.md`, `scripts/`, `references/`, `assets/`, and `evals/`.
 
-### The folder structure
+## The Folder Structure
 
 ![Anatomy of a Skill](assets/anatomy-of-a-skill.png)
 
 Only `SKILL.md` is required. Everything else is optional. You add it when you need it.
 
-### SKILL.md: the brain
+## SKILL.md: The Brain
 
 This is the only required file. It has two parts:
 
@@ -37,7 +35,7 @@ This is where you tell the agent what to do, step by step. For our README Wizard
 
 The body should be under 500 lines. If you need more detail, put it in reference files.
 
-### scripts/: the mechanical work
+## Scripts
 
 Scripts handle deterministic, repeatable tasks that the agent would otherwise reinvent every time. For our README Wizard:
 
@@ -47,7 +45,7 @@ Scripts handle deterministic, repeatable tasks that the agent would otherwise re
 
 The key insight: **scripts run without being loaded into the agent's context**. The agent executes them and reads the output. This saves tokens. A 200-line bash script doesn't eat into the context window.
 
-### references/: domain knowledge on demand
+## References
 
 References are documents the agent reads when it needs guidance. For our README Wizard:
 
@@ -57,7 +55,7 @@ The agent only reads this when it's about to write a README. It doesn't load it 
 
 For large reference files (over 300 lines), include a table of contents at the top so the agent can find what it needs quickly.
 
-### assets/: reusable output files
+## Assets
 
 Assets are files that get plugged into the output. For our README Wizard:
 
@@ -69,7 +67,7 @@ Assets are files that get plugged into the output. For our README Wizard:
 
 Assets are different from references. References teach the agent, assets are used in the output.
 
-### evals/: testing your skill
+## Evals
 
 Evals are test cases that define what "good" looks like. For our README Wizard:
 
@@ -109,10 +107,16 @@ bash scripts/check_readme.sh /path/to/generated/README.md
   Results: 13 passed, 0 failed
 ```
 
-### Before vs After
+## Before vs After
 
 Here's what the README Wizard actually produces. The difference between a README without the skill and with it:
 
 ![Before vs After](assets/before-vs-after.png)
 
 Now you know what a skill looks like and what each piece does. In Part 3, you'll build this exact structure from scratch and experience firsthand why each folder exists.
+
+## Next Steps
+
+You've seen the anatomy of a skill. Now let's build one from scratch.
+
+**Next:** [Tutorial 3: Build the README Wizard — Phase 1 →](03_build-readme-wizard-skill-part_1.md)
