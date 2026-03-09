@@ -4,7 +4,7 @@ Your skill is just files in a folder. To share it, push it to a GitHub repo so a
 
 **Success check:** You can install the skill from GitHub and it triggers in a new chat.
 
-### Push to GitHub
+## Push to GitHub
 
 Create a new repo for your skill. Keep the skill in the `.agents/skills/` structure, so your repo should look like this:
 
@@ -20,25 +20,15 @@ my-project/             ← repo root
 			└── evals/
 ```
 
+> **Claude Code users:** Your skill is in `.claude/skills/` — adjust the prompt below accordingly.
+
 Copy this prompt:
 
 ```
 Copy the readme-wizard skill folder from .agents/skills/readme-wizard into a new directory outside this project. Initialize it as a git repo and push it to a new GitHub repo called readme-wizard under my account.
 ```
 
-Or do it manually:
-
-```bash
-cp -r .agents/skills/readme-wizard ~/readme-wizard
-cd ~/readme-wizard
-git init
-git add .
-git commit -m "feat: readme-wizard skill"
-git remote add origin https://github.com/YOUR-USERNAME/readme-wizard.git
-git push -u origin main
-```
-
-### Install with the skills CLI
+## Install with the Skills CLI
 
 The [skills CLI](https://github.com/vercel-labs/skills) (`npx skills`) is the package manager for the open agent skills ecosystem. No installation required — just run it with `npx`.
 
@@ -56,7 +46,7 @@ By default, skills install to **project scope** (e.g., `.agents/skills/` in the 
 npx skills add YOUR-USERNAME/readme-wizard -g
 ```
 
-### Make your skill global (available in every project)
+## Make Your Skill Global (available in every project)
 
 Global skills are installed into your home directory so they work in any project without copying files. This is great for personal workflows or team-wide conventions.
 
@@ -66,13 +56,13 @@ Copy this prompt:
 Install my readme-wizard skill globally so it is available in every project. Use the skills CLI and the global flag, then confirm the install location.
 ```
 
-If you want to verify it manually, run:
+To verify installation:
 
-```bash
-npx skills list
+```
+List my installed skills and confirm readme-wizard is installed globally.
 ```
 
-### Install for specific agents
+## Install for Specific Agents
 
 The skills CLI supports 40+ agents including GitHub Copilot, Claude Code, Cursor, Codex, Windsurf, Amp, Roo, Gemini CLI, and many more. You can target specific agents:
 
@@ -89,7 +79,7 @@ npx skills add YOUR-USERNAME/readme-wizard --all
 npx skills add YOUR-USERNAME/readme-wizard -a claude-code -g -y
 ```
 
-### Discover skills
+## Discover Skills
 
 Browse what others have built, or search from the command line:
 
@@ -106,7 +96,7 @@ npx skills add vercel-labs/agent-skills --list
 
 Visit [skills.sh](https://skills.sh) to browse the leaderboard of most-installed skills.
 
-### Other useful CLI commands
+## Other Useful CLI Commands
 
 ```bash
 npx skills list          # List installed skills
@@ -116,7 +106,7 @@ npx skills remove        # Remove a skill interactively
 npx skills init my-skill # Scaffold a new skill from a template
 ```
 
-### Prerequisites
+## Prerequisites
 
 Skills are discovered automatically by agents that support the [Agent Skills specification](https://agentskills.io). The skills CLI handles installing to the right location for each agent, but here's what to know:
 
@@ -126,13 +116,13 @@ Skills are discovered automatically by agents that support the [Agent Skills spe
 
 For both agents, start a **new session** after installing a skill.
 
-### Troubleshooting (if the skill doesn't install or trigger)
+## Troubleshooting (if the skill doesn't install or trigger)
 
 - Verify your repo has `SKILL.md` at the repo root
 - Re-run `npx skills add ...` and choose project scope if you're testing locally
 - Start a new chat session so the agent re-discovers skills
 
-### Key principles
+## Key Principles
 
 1. **The description is the trigger**: make it specific and pushy so the agent knows when to use the skill
 2. **Keep SKILL.md under 500 lines**: put detailed knowledge in references, data in assets
@@ -140,7 +130,7 @@ For both agents, start a **new session** after installing a skill.
 4. **Selective loading**: not every file needs to load every time. Tell the agent when to skip
 5. **Iterate**: write, test, fix, repeat. Skills get better through use
 
-### What to build next
+## What to Build Next
 
 Now that you know how skills work, here are some ideas:
 
@@ -150,7 +140,7 @@ Now that you know how skills work, here are some ideas:
 - **Changelog generator**: reads git log between tags and produces a formatted CHANGELOG
 - **API documentation generator**: scans endpoints and generates docs
 
-### Useful links
+## Useful Links
 
 - [skills.sh](https://skills.sh): browse and discover skills
 - [Skills CLI source code](https://github.com/vercel-labs/skills): the open source CLI

@@ -1,8 +1,8 @@
-### Phase 2: Add more detail
+# Phase 2: Add More Detail
 
-**Success check:** The README output follows a consistent structure with standardized badge formats and tone.
+**Success check:** Run the skill twice on the same project. Both outputs should have the same section order, badge style (`style=for-the-badge`), and tone.
 
-#### Step 4: Flesh out the SKILL.md
+### Step 4: Flesh out the SKILL.md
 
 The basic skill works but the output is inconsistent. Let's add more detail to the instructions: specific badge formats, best practices for writing tone, a template for the README structure, and clearer rules.
 
@@ -14,7 +14,7 @@ Update the readme-wizard SKILL.md to include more detail. Add a "Best Practices"
 
 The agent updates the SKILL.md with all this detail. Open it and look at the file size. It's probably 150+ lines now. All the badge formats, best practices, structure guide, and diagram templates are inline.
 
-#### Step 5: Test again
+### Step 5: Test again
 
 Let's test the improved version.
 
@@ -26,7 +26,7 @@ Improve the README for this project following the readme-wizard skill instructio
 
 Much better! The badges are consistent, the structure follows the template, the tone is right. But look at the SKILL.md  file. It's getting long and hard to maintain. The badge templates, best practices, README structure, and diagram templates are all mixed in with the instructions. If you want to update a badge format, you're scrolling through 150+ lines. If someone wants to customize just the template, they have to edit the whole file.
 
-### Troubleshooting (if the output still looks inconsistent)
+## Troubleshooting
 
 - Re-run the prompt in a new chat session so the skill loads fresh
 - Confirm the badge URLs use `style=for-the-badge`
@@ -44,4 +44,9 @@ Let's refactor.
 
 ![The Refactor](assets/the-refactor.png)
 
+## Next Steps
+
+The skill works but the file is bloated. Let's break it into the proper folder structure.
+
+**Next:** [Tutorial 5: Build the README Wizard — Phase 3 →](05_build-readme-wizard-skill-part_3.md)
 

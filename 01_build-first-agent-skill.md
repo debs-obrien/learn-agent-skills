@@ -1,12 +1,16 @@
 # Build Your First Agent Skill
 
-Learn what agent skills are, how they work, and build one from scratch using your AI coding agent. This tutorial covers **GitHub Copilot** and **Claude Code**, but skills work across many agents. By the end, you'll have a working skill that transforms any repo's README into a polished, professional one.
+Learn what agent skills are, how they work, and build one from scratch using your AI coding agent. This tutorial covers **GitHub Copilot** and **Claude Code**, but skills work across many agents.
 
 **Success check:** You can say "Good morning" in a new chat and the agent responds using your `good-morning` skill.
 
-### What you'll build
+### What you'll build in this tutorial
 
-We're going to build a skill called **README Wizard** that takes a basic README like this:
+We're going to build a simple `good-morning` skill that teaches your agent to greet you in a personalized way. It's a quick win that shows you how skills work before we tackle something bigger.
+
+### What you'll build in this series
+
+In later tutorials, you'll build a **README Wizard** skill that takes a basic README like this:
 
 ```
 # My Project
@@ -21,21 +25,22 @@ And transforms it into something like this:
 
 A polished README with a hero section, badges with live subscriber and member counts, quick start, project structure, Mermaid diagrams, documentation table, contributor avatars, social links, and a star history chart.
 
-You can see the finished skill and example output in the [README Wizard repo](https://github.com/debs-obrien/readme-wizard) *(link coming soon)*.
+But first, let's start simple.
 
 ---
 
 ## Table of Contents
 
-- [Part 1: What Are Skills?](#part-1-what-are-skills)
-- [Part 2: Anatomy of a Skill](#part-2-anatomy-of-a-skill)
-- [Part 3: Build Your Own Skill](#part-3-build-your-own-skill)
-- [Part 4: Share Your Skill](#part-4-share-your-skill)
-- [Quick Reference](#quick-reference)
+- [What Are Skills?](#what-are-skills)
+- [Build Your First Skill](#build-your-first-skill)
+- [How Skills Get Loaded](#how-skills-get-loaded)
+- [Where Skills Live](#where-skills-live)
+- [The Skills Ecosystem](#the-skills-ecosystem)
+- [Next Steps](#next-steps)
 
 ---
 
-## Part 1: What Are Skills?
+## What Are Skills?
 
 [![What Are Agent Skills?](https://img.youtube.com/vi/2REiUlciObk/maxresdefault.jpg)](https://youtu.be/2REiUlciObk?si=im87wwgj8vcN91br)
 
@@ -52,98 +57,82 @@ A skill is a reusable set of instructions that teaches an AI agent how to do a s
 - **Without a skill** → the agent produces generic output
 - **With a skill** → the agent follows your instructions and produces exactly what you want, every time
 
-At its simplest, a skill is just **one file**: a `SKILL.md` with a name, description, and instructions. That's it. You can add extras like scripts, references, assets, and evals — but you don't have to. We'll cover those in [Part 2](#part-2-anatomy-of-a-skill). All you need right now is the `SKILL.md` file.
+At its simplest, a skill is just **one file**: a `SKILL.md` with a name, description, and instructions. That's it. You can add extras like scripts, references, assets, and evals — but you don't have to. We'll cover those in [Tutorial 2](02_skill-deep-dive.md). All you need right now is the `SKILL.md` file.
 
 Let's build one.
 
-### Build your first skill
+## Build Your First Skill
 
 Open VS Code in your project directory. We're going to create a `good-morning` skill step by step.
 
-**Step 1: Create the folder structure**
+**Step 1: Create the skill folder and file**
 
-Create a new folder in your project root. You can use `.agents/`, `.github/`, or `.claude/`. And then create a skills folder. The `.agents/skills/` path is the cross-agent convention that works with Copilot, Goose, and others however Claude code requires a `.claude/skills/` path. Inside the skills folder, create a folder called `good-morning`. This folder name is your skill's name.
+We need a folder for our skill with a `SKILL.md` file inside it. The `.agents/skills/` path is the cross-agent convention that works with Copilot, Goose, and others. Claude Code requires `.claude/skills/` instead.
+
+Copy this prompt:
+
+```
+Create a new skill folder at .agents/skills/good-morning/ with an empty SKILL.md file inside it.
+```
+
+You should end up with:
 
 ```
 your-project/
-└── .github/
-    └── skills/
-        └── good-morning/
-```
-
-**Step 2: Create the SKILL.md file**
-
-Inside the `good-morning` folder, create a file called `SKILL.md`. It must be in capital letters — that's how agents find it.
-
-```
-your-project/
-└── .github/
+└── .agents/
     └── skills/
         └── good-morning/
             └── SKILL.md
 ```
 
-**Step 3: Add the frontmatter**
+> **Claude Code users:** Use `.claude/skills/good-morning/` instead.
 
-Open `SKILL.md` and add the YAML frontmatter at the top:
+**Step 2: Write the skill**
 
-```yaml
----
-name: good-morning
-description: A skill that responds to good morning with a cheerful greeting
----
+Now let's fill in the SKILL.md with a complete skill. The file has two parts:
+
+1. **YAML frontmatter** — the metadata at the top between `---` markers. The `name` must match the folder name exactly. The `description` tells the agent when to use this skill.
+
+2. **Markdown body** — the instructions the agent follows when the skill triggers.
+
+Copy this prompt:
+
 ```
+Replace the contents of .agents/skills/good-morning/SKILL.md with a skill that responds to "good morning" greetings. The frontmatter should have name: good-morning and a description that says it responds to good morning with a cheerful greeting.
 
-Two important things here:
-
-1. **The name must match the folder name.** If the folder is called `good-morning`, the name must be `good-morning`. If they don't match, the skill will not load.
-
-2. **The name and description are always in context.** Every time you're working in this project, the agent sees the name and description so it knows what skills are available. Keep the description short and specific, this is how the agent knows when to use the skill.
-
-**Step 4: Write the instructions**
-
-Everything below the frontmatter is the skill body. This only gets added to context **when the skill is called**, not all the time. The agent only loads these instructions when it decides to use the skill.
-
-Add the body below the frontmatter:
-
-```markdown
----
-name: good-morning
-description: A skill that responds to good morning with a cheerful greeting
----
-
-# Good Morning Skill
-
-When the user says good morning, respond with:
-
-- "Hi Debbie, hope you have a great day!"
+The body should tell the agent to:
+- Greet the user by name (use "Debbie" as the example)
 - Ask if they have done any sport today
 - Include a funny joke about sports
 
-## Example
-
-**User:** Good morning
-
-**Agent:** Hi Debbie, have you done any sport today? Here's a funny joke about sports: Why did the soccer player bring string to the game? Because he wanted to tie the score!
+Include an example exchange showing what the response should look like.
 ```
 
-That's the complete skill. One file. A few lines of instructions. Make it as personal as you like, put your own name in there, change the topic from sports to whatever you want.
+The agent creates a complete `SKILL.md` with frontmatter and instructions. Open it and take a look — it should be around 15-20 lines.
+
+**Important things to know:**
+
+- **The name must match the folder name.** If the folder is called `good-morning`, the name must be `good-morning`. If they don't match, the skill will not load.
+
+- **The name and description are always in context.** Every time you're working in this project, the agent sees the name and description so it knows what skills are available.
+
+- **The body only loads when triggered.** Everything below the frontmatter only gets added to context when the skill is called, not all the time.
+
+Make it as personal as you like — put your own name in there, change the topic from sports to whatever you want.
 
 ### Test it
 
-Start a **new chat session** (skills are discovered at session start) and type:
+Start a **new chat session** (skills are discovered at session start) and test the skill.
+
+Copy this prompt:
 
 ```
 Good morning
 ```
 
-The agent finds the skill, reads the `SKILL.md` file, and responds.
+The agent finds the skill, reads the `SKILL.md` file, and responds with a personalized greeting, a question about sports, and a joke.
 
-**In GitHub Copilot**: *"Hi Debbie, have you done any sport today? Here's a funny joke about sports: Why did the bicycle fall over? Because it was too tired from all that cycling!"*
-
-**In Claude Code**: First make sure to change the folder name from `.github` to `.claude` for your skill. Then open Claude Code from the same project directory, say "good morning", and you get the same thing: *"Hi Debbie, have you done any sport today? Here's a funny joke for you: Why do basketball players love donuts? Because they can always dunk them!"*
-
-Skills work across agents. The same `SKILL.md` file works in Copilot, Claude Code, and others. Each agent discovers the skill, reads the instructions, and follows them.
+Skills work across agents. The same `SKILL.md` file works in Copilot, Claude Code, Cursor, and others. Each agent discovers the skill, reads the instructions, and follows them.
 
 ### Troubleshooting (if it doesn't trigger)
 
@@ -153,7 +142,7 @@ Skills work across agents. The same `SKILL.md` file works in Copilot, Claude Cod
 
 That's a skill in action. Now imagine instead of "good morning", the instructions told the agent how to generate a polished README, write commit messages in your team's format, or review code against your standards. Same idea, bigger impact.
 
-### How skills get loaded
+## How Skills Get Loaded
 
 Skills are designed to be efficient with context windows. They use a three-level loading system. The agent only loads what it needs, when it needs it.
 
@@ -167,7 +156,7 @@ Skills are designed to be efficient with context windows. They use a three-level
 
 This matters because context windows are limited. A well-designed skill is lean at the top and detailed at the bottom.
 
-### Where skills live
+## Where Skills Live
 
 Skills can be installed at two levels:
 
@@ -204,7 +193,7 @@ your-project/.claude/skills/
 
 The `.agents/skills/` path is part of the [Agent Skills open standard](https://agentskills.io) which is a cross-tool standard, but Claude Code uses its own `.claude/` directory structure, not `.agents/`.
 
-### The skills ecosystem
+## The Skills Ecosystem
 
 There's a whole directory of skills at [skills.sh](https://skills.sh) where you can browse and discover skills built by the community.
 
@@ -230,4 +219,10 @@ npx skills find
 
 Skills work across multiple AI agents — Copilot, Claude Code, Cursor, Goose, and many more. The skills CLI handles installing to the right location for each agent.
 
-And that's just the beginning. The skills ecosystem is growing fast with new skills being added all the time. You can build your own skill and share it with the world, or just explore what's out there and install the ones that look useful. Have fun and start building some skills.
+And that's just the beginning. The skills ecosystem is growing fast with new skills being added all the time. You can build your own skill and share it with the world, or just explore what's out there and install the ones that look useful.
+
+## Next Steps
+
+You've built your first skill. Now let's look inside a more complex one to understand the full folder structure.
+
+**Next:** [Tutorial 2: Anatomy of a Skill →](02_skill-deep-dive.md)

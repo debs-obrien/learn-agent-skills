@@ -26,6 +26,12 @@ cd learn-agent-skills
 
 Open it in VS Code (or your preferred editor with an AI agent) and follow the tutorials in order.
 
+## How to Follow This Tutorial
+
+Each step gives you a **prompt to copy** — paste it into your AI agent (GitHub Copilot, Claude Code, Cursor, etc.) and let the agent do the work. That's the whole point: you're learning to work *with* your agent.
+
+> **Claude Code users:** Use `.claude/skills/` instead of `.agents/skills/` for your skill folders.
+
 ## Tutorials
 
 | # | Tutorial | What you'll learn |
