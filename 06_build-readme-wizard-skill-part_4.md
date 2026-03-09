@@ -16,6 +16,8 @@ Create .agents/skills/readme-wizard/scripts/check_readme.sh that takes a README 
 
 The agent creates the validation script. Now we can check any generated README instantly.
 
+*(Tip: Just like in the previous step, make sure to manually run `chmod +x .agents/skills/readme-wizard/scripts/check_readme.sh` in your terminal if the agent forgot to make it executable!)*
+
 ### Step 11: Add evals
 
 Evals are test cases that define what "good" looks like. Think of them like unit tests for your skill. They're optional but useful for tracking whether changes to the skill improve or break things.

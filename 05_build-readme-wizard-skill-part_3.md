@@ -51,10 +51,12 @@ Here's a big one. Every time we test the skill, the agent writes the same code t
 Copy this prompt:
 
 ```
-Create .agents/skills/readme-wizard/scripts/scan_project.sh that takes a project directory path and outputs JSON with everything we need: project name, description, license, git remote (owner/repo), package manager, CI setup, social links, and directory structure. For social links, search local project files first, then the GitHub API for the homepage URL, then crawl the homepage for links in the footer. Also resolve YouTube channel IDs and Discord server IDs so we can use live count badges. Make sure it works on both macOS and Linux. Make it executable and update the SKILL.md to reference it.
+Create .agents/skills/readme-wizard/scripts/scan_project.sh that takes a project directory path and outputs JSON with everything we need: project name, description, license, git remote (owner/repo), package manager, CI setup, social links, and directory structure. For social links, search local project files first, then the GitHub API for the homepage URL, then crawl the homepage for links in the footer. Also resolve YouTube channel IDs and Discord server IDs so we can use live count badges. Make sure it works on both macOS and Linux. Use Node.js, Python, or standard grep/sed to parse files so it works without requiring external libraries like jq. Make it executable and update the SKILL.md to reference it.
 ```
 
 The agent creates the script and updates the SKILL.md. Now instead of the agent writing scanning code from scratch every time, it runs one script and gets structured JSON back. Faster, more reliable, and it doesn't eat into the context window.
+
+**(Important:** If the agent fails to make the script executable, you will get a permission denied error later! Open a terminal and physically run `chmod +x .agents/skills/readme-wizard/scripts/scan_project.sh` to be safe.)
 
 Test the script right away.
 
