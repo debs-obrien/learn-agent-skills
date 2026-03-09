@@ -1,0 +1,94 @@
+# Build Your Own Skill - a Readme Wizard
+
+Time to build the README Wizard from scratch. We'll start simple, get something working, then improve it step by step. Along the way you'll see exactly why skills have the folder structure they do.
+
+**Time estimate:** 30-45 minutes for Phase 1
+
+**Success check:** The readme-wizard skill updates a README with badges, quick start, and project structure.
+
+### The build loop
+
+This is the process we'll follow throughout:
+
+![The Build Loop](assets/the-build-loop.png)
+
+Write the skill → test it on a real repo → review the output → find issues and fix them → test again. Repeat until it's good. Then ship it.
+
+### Setup
+
+Before we start, make sure you have:
+
+1. **Node.js** installed (for the skills CLI)
+2. **GitHub Copilot** (with Copilot Chat in VS Code) or **Claude Code** installed
+3. **A project to test against**. Use your own repo, or clone any public repo
+
+
+### Phase 1: Get something working
+
+#### Step 1: Create the skill folder
+
+We need a folder for our skill with a SKILL.md file inside it. Just like in Tutorial 1, skills live inside a `skills/` directory. We'll use `.agents/skills/` which is the cross-agent convention that works with Copilot, Goose, and others.
+
+Tell your agent:
+
+> Create a new skill folder at `.agents/skills/readme-wizard/` with an empty `SKILL.md` file inside it.
+
+Or if you prefer, run it directly in your terminal:
+
+```bash
+mkdir -p .agents/skills/readme-wizard && touch .agents/skills/readme-wizard/SKILL.md
+```
+
+Either way, you end up with:
+
+```
+.agents/
+└── skills/
+    └── readme-wizard/
+        └── SKILL.md
+```
+
+Open the SKILL.md. It's empty for now. We're going to fill it with our own instructions.
+
+#### Step 2: Write a basic SKILL.md
+
+Let's start simple. We want a skill that improves a project's README by adding badges, a quick start section, project structure, and social links. We'll put everything in one file for now.
+
+Tell your agent:
+
+> Replace the contents of `.agents/skills/readme-wizard/SKILL.md` with a skill that improves project READMEs. The frontmatter should have `name: readme-wizard` and a description that tells the agent to use this skill whenever someone mentions README, badges, project documentation, or making their repo look professional.
+>
+> The body should tell the agent to:
+> 1. Detect the project name, description, license, git remote, package manager, and CI setup by reading the project files
+> 2. Improve the README to include: a centered hero section with the project name and tagline, shields.io badges (license, version, CI, stars) using `style=for-the-badge`, a "What is this?" section, a Quick Start section with real install/run commands, a project structure tree, a documentation table, a contributing section with contributor avatars from contrib.rocks, social link badges, and a footer with a star history chart
+
+The agent writes a SKILL.md with all the instructions inline. Open it and take a look. It should be around 30-50 lines of clear, step-by-step instructions.
+
+#### Step 3: Test it
+
+Let's see if our basic skill works. We're going to ask the agent to improve the README for a real project using our skill. Open a project you want to test against (your own repo, or clone any public repo) and make sure the readme-wizard skill is in that project's `.agents/skills/` directory.
+
+Tell your agent:
+
+> Improve the README for this project following the readme-wizard skill instructions.
+
+The agent scans the project and improves the README based on the instructions we wrote. Take a look at the output. It probably works, but you'll notice some issues:
+
+- The badges might be inconsistent or use different styles
+- The structure might vary each time you run it
+- The agent might have guessed at social links that don't exist
+- Some projects won't have CI, releases, or social links — the agent might add badges for things that don't exist, or skip sections without explanation
+- It wrote the scanning logic from scratch instead of reusing anything
+
+That's OK. We have a working starting point. Now let's make it better.
+
+### Quick win checkpoint
+
+If you only need a simple skill, you can stop here. You already have a working `SKILL.md` that improves READMEs and a clear prompt you can reuse. Everything after this point is about making the skill more consistent and maintainable.
+
+### Troubleshooting (if it doesn't improve)
+
+- Verify the skill is in the project you are testing
+- Start a new chat session so the agent re-discovers the skill
+- Check the frontmatter `name:` matches the folder name exactly
+

@@ -1,0 +1,38 @@
+{
+  "skill": "readme-wizard",
+  "evals": [
+    {
+      "id": "straightforward-request",
+      "prompt": "Improve the README for this project",
+      "expected_output": "A polished README.md with all standard sections filled in from actual project data",
+      "assertions": [
+        "Has a centered hero section with the project name and a short tagline",
+        "Includes shields.io badges with style=for-the-badge for license, version, CI status, and stars",
+        "Has a What is this section that describes the project in 2-3 sentences",
+        "Has a Quick Start section with real install and run commands based on the detected package manager",
+        "Includes a project structure tree generated from the actual file system",
+        "Has a documentation table linking to real files in the repo",
+        "Has a contributing section with contributor avatars from contrib.rocks",
+        "Only includes social badges for links that actually exist in the project",
+        "Has a star history chart in the footer",
+        "Does not contain placeholder text like {{PROJECT_NAME}} or TODO"
+      ]
+    },
+    {
+      "id": "casual-request",
+      "prompt": "My repo needs a better README, can you make it look professional?",
+      "expected_output": "A professional README.md that transforms a basic or empty README into a polished one",
+      "assertions": [
+        "Has a centered hero section with the project name and a short tagline",
+        "Includes shields.io badges with style=for-the-badge for at least license and stars",
+        "Has a What is this section that accurately describes what the project does",
+        "Has a Quick Start section with real commands, not generic placeholders",
+        "Includes a project structure tree",
+        "Has a contributing section with contributor avatars",
+        "Does not fabricate social media links that don't exist in the project",
+        "Does not include badges for CI workflows that don't exist",
+        "Writing tone is concise and direct, not marketing fluff"
+      ]
+    }
+  ]
+}
