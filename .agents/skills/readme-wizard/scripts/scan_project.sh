@@ -38,6 +38,10 @@ elif [[ -f Cargo.toml ]]; then
 elif [[ -f pyproject.toml ]]; then
   PROJECT_NAME=$(grep -m1 '^name' pyproject.toml | sed 's/name[[:space:]]*=[[:space:]]*"//;s/"$//')
   DESCRIPTION=$(grep -m1 '^description' pyproject.toml | sed 's/description[[:space:]]*=[[:space:]]*"//;s/"$//')
+elif [[ -f go.mod ]]; then
+  # Go module name is the module path; use the last segment as project name
+  MODULE_PATH=$(grep -m1 '^module' go.mod | sed 's/module[[:space:]]*//')
+  PROJECT_NAME=$(basename "$MODULE_PATH")
 fi
 
 # Fallback: use directory name
@@ -116,6 +120,12 @@ elif [[ -f requirements.txt ]]; then
   PACKAGE_MANAGER="pip"
 elif [[ -f go.sum ]]; then
   PACKAGE_MANAGER="go"
+elif [[ -f go.mod ]]; then
+  PACKAGE_MANAGER="go"
+elif [[ -f build.gradle ]] || [[ -f build.gradle.kts ]]; then
+  PACKAGE_MANAGER="gradle"
+elif [[ -f deno.json ]] || [[ -f deno.jsonc ]]; then
+  PACKAGE_MANAGER="deno"
 fi
 
 # ---------- CI setup ----------

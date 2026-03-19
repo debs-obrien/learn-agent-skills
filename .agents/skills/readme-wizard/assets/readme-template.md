@@ -36,7 +36,8 @@
   <img src="https://contrib.rocks/image?repo={{OWNER}}/{{REPO}}" />
 </a>
 
-## {{SOCIAL_SECTION — only if social links exist}}
+<!-- Include this section ONLY if the project has social links. Remove entirely if none exist. -->
+## Connect
 
 {{SOCIAL_BADGES}}
 

@@ -71,7 +71,12 @@ check "contrib.rocks avatars"       "contrib\.rocks"
 echo ""
 
 echo "Social links:"
-check "Social badges or links"      "(youtube|discord|twitter|x\.com|linkedin|bluesky|twitch)"
+# Social links are optional — only check if at least one social badge/link is present
+if echo "$CONTENT" | grep -qiE "(youtube|discord|twitter|x\.com|linkedin|bluesky|twitch)"; then
+  check "Social badges or links"      "(youtube|discord|twitter|x\.com|linkedin|bluesky|twitch)"
+else
+  echo "  ⏭️  No social links (skipped — this is fine if the project has none)"
+fi
 echo ""
 
 echo "Footer:"
