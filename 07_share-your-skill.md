@@ -138,16 +138,6 @@ npx skills remove        # Remove a skill interactively
 npx skills init my-skill # Scaffold a new skill from a template
 ```
 
-## Prerequisites
-
-Skills are discovered automatically by agents that support the [Agent Skills specification](https://agentskills.io). The skills CLI handles installing to the right location for each agent, but here's what to know:
-
-**GitHub Copilot**: Make sure Copilot Chat is enabled in VS Code. Skills in `.agents/skills/` are discovered automatically at session start.
-
-**Claude Code**: Skills in `.claude/skills/` are discovered automatically at session start.
-
-For both agents, start a **new session** after installing a skill.
-
 ## Troubleshooting (if the skill doesn't install or trigger)
 
 - **Subdirectory skills**: Make sure you're using `--skill skill-name` flag

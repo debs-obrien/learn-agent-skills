@@ -10,6 +10,8 @@ Before you start, verify you have:
 - ✅ Basic skill tested successfully (you generated a README once)
 - ✅ Agent ready in a new chat session
 
+> Steps continue from Tutorial 3. We pick up at Step 4.
+
 ---
 
 ### Step 4: Flesh out the SKILL.md

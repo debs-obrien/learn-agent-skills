@@ -26,19 +26,7 @@ Once you choose, stick with it consistently. All prompts will use `.agents/` as 
 
 ### 📋 How to Use This Tutorial
 
-Throughout the tutorial, you'll see **"Copy this prompt"** sections that look like this:
-
-```
-Create a new skill folder at .agents/skills/good-morning/ with an empty SKILL.md file inside it.
-```
-
-**Here's what to do:**
-1. Click inside the code block
-2. Select all the text (Ctrl+A or Cmd+A)
-3. Copy it (Ctrl+C or Cmd+C)
-4. Open your AI agent's chat (GitHub Copilot, Claude Code, Cursor, etc.)
-5. Paste the prompt (Ctrl+V or Cmd+V)
-6. Press Enter and let the agent do the work
+Throughout the tutorial, you'll see **"Copy this prompt"** sections — code blocks with text to paste into your AI agent's chat. Copy the text, paste it into your agent, and press Enter. The agent does the work.
 
 That's the whole point of skills: you work *with* your agent, not instead of it.
 

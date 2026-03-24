@@ -14,18 +14,6 @@ Before you start, verify you have:
 
 **Note:** This phase requires bash scripts. **Windows users:** Make sure you have WSL2 or Git Bash set up (see Tutorial 1 for setup link). If not set up, you can skip the script sections.
 
-### Scripts Must Be Executable ⚙️
-
-When the agent creates bash scripts (`.sh` files), it should make them executable. However, if something goes wrong, you'll get a "permission denied" error when trying to run the script.
-
-**Quick fix:** Open your terminal and run:
-
-```bash
-chmod +x .agents/skills/readme-wizard/scripts/*.sh
-```
-
-This makes all scripts in the folder executable. Do this once at the start of Phase 3, and you're covered for the rest of the tutorial.
-
 ---
 
 Now we're going to break the bloated SKILL.md into separate files. Each extraction has a clear reason. By the end, you'll understand exactly why skills have the folder structure they do.

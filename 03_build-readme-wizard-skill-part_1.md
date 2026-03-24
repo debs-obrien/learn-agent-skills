@@ -1,4 +1,4 @@
-# Build Your Own Skill - a Readme Wizard
+# Phase 1: Build the README Wizard
 
 Time to build the README Wizard from scratch. We'll start simple, get something working, then improve it step by step. Along the way you'll see exactly why skills have the folder structure they do.
 
@@ -32,7 +32,9 @@ This is the process we'll follow throughout:
 
 Write the skill → test it on a real repo → review the output → find issues and fix them → test again. Repeat until it's good. Then ship it.
 
-## Setup\n\nIf you haven't already, check the prerequisites in [Tutorial 1](01_build-first-agent-skill.md#-what-youll-need).
+## Setup
+
+If you haven't already, check the prerequisites in [Tutorial 1](01_build-first-agent-skill.md#-what-youll-need).
 
 
 ## Phase 1: Get Something Working

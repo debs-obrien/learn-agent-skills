@@ -60,7 +60,17 @@ learn-agent-skills/
 │       ├── good-morning/                  # Example skill from Tutorial 1
 │       │   └── SKILL.md
 │       └── readme-wizard/                 # README Wizard skill (Tutorials 3-6)
-│           └── SKILL.md
+│           ├── SKILL.md
+│           ├── scripts/
+│           │   └── scan_project.sh
+│           ├── references/
+│           │   └── readme-best-practices.md
+│           ├── assets/
+│           │   ├── badges.json
+│           │   ├── readme-template.md
+│           │   └── diagrams.md
+│           └── evals/
+│               └── evals.json
 ├── assets/                                # Images used in the tutorials
 ├── LICENSE
 └── README.md
@@ -123,7 +133,5 @@ MIT License — see [LICENSE](LICENSE) for details.
 <div align="center">
 
 [![Star History Chart](https://api.star-history.com/svg?repos=debs-obrien/learn-agent-skills&type=Date)](https://star-history.com/#debs-obrien/learn-agent-skills&Date)
-
-</div>
 
 </div>

@@ -95,7 +95,15 @@ Here's what the README Wizard actually produces. The difference between a README
 
 ![Before vs After](assets/before-vs-after.png)
 
-Now you know what a skill looks like and what each piece does. In Part 3, you'll build this exact structure from scratch and experience firsthand why each folder exists.
+### Test Your Understanding
+
+Copy this prompt to verify you've absorbed the key concepts:
+
+```
+Explain what each folder in a skill is used for: SKILL.md, scripts/, references/, assets/, and evals/. Give a one-sentence description for each.
+```
+
+Now you know what a skill looks like and what each piece does. In Tutorial 3, you'll build this exact structure from scratch and experience firsthand why each folder exists.
 
 ## Next Steps
 
