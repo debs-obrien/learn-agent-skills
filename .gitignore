@@ -33,3 +33,6 @@ coverage/
 # Temp files
 tmp/
 temp/
+
+# Skill optimization workspace
+readme-wizard-workspace/

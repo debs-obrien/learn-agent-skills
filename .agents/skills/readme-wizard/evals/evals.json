@@ -7,7 +7,7 @@
       "expected_output": "A polished README.md with all standard sections filled in from actual project data",
       "assertions": [
         "Has a centered hero section with the project name and a short tagline",
-        "Includes shields.io badges with style=for-the-badge for license, version, CI status, and stars",
+        "Includes shields.io badges with style=for-the-badge for status indicators that exist in the project (e.g., license, stars, and optionally version/CI if present)",
         "Has a What is this section that describes the project in 2-3 sentences",
         "Has a Quick Start section with real install and run commands based on the detected package manager",
         "Includes a project structure tree generated from the actual file system",
@@ -32,6 +32,31 @@
         "Does not fabricate social media links that don't exist in the project",
         "Does not include badges for CI workflows that don't exist",
         "Writing tone is concise and direct, not marketing fluff"
+      ]
+    },
+    {
+      "id": "minimal-project",
+      "prompt": "Generate a README for this project. It's just a small script, nothing fancy.",
+      "expected_output": "A concise README that is proportional to the project size — not bloated with unnecessary sections",
+      "assertions": [
+        "Has a project title and description",
+        "Has a Quick Start or Usage section showing how to run the script",
+        "Does not include empty or stub sections",
+        "Does not fabricate metadata that doesn't exist in the project",
+        "README length is proportional to the project complexity — not excessively long for a simple project",
+        "Does not contain placeholder text like {{PROJECT_NAME}} or TODO"
+      ]
+    },
+    {
+      "id": "badge-focus",
+      "prompt": "I want to add some nice badges to my README, the shields.io kind. Can you help?",
+      "expected_output": "README with properly formatted shields.io badges based on actual project metadata",
+      "assertions": [
+        "All badges use style=for-the-badge",
+        "Badge URLs point to shields.io",
+        "No badges reference nonexistent CI workflows or packages",
+        "Status badges are grouped together at the top",
+        "Badge links point to the correct GitHub pages (stargazers, releases, actions, etc.)"
       ]
     }
   ]

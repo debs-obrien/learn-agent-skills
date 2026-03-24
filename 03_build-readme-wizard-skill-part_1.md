@@ -1,8 +1,28 @@
-# Build Your Own Skill - a Readme Wizard
+# Phase 1: Build the README Wizard
 
 Time to build the README Wizard from scratch. We'll start simple, get something working, then improve it step by step. Along the way you'll see exactly why skills have the folder structure they do.
 
 **Success check:** Run the skill on a test project and confirm the README now has shields.io badges, a Quick Start section, and a project structure tree.
+
+---
+
+### Prerequisites Checklist
+
+Before you start, make sure you have:
+
+- ✅ Tutorial 1 completed (you built the `good-morning` skill)
+- ✅ Tutorial 2 read (you understand the skill folder structure)
+- ✅ VS Code or your editor open with your practice project
+- ✅ Your agent (GitHub Copilot, Claude Code, or Cursor) ready to chat
+- ✅ A practice project ready (create a new folder/repo, or clone a small public repo with a rough README)
+
+---
+
+### 💡 Quick Reminder
+
+Each step has **"Copy this prompt"** sections. Just copy the text, paste it into your agent's chat, and let the agent do the work. If you're using Claude Code, remember to swap `.agents/` to `.claude/` in the prompts.
+
+---
 
 ## The Build Loop
 
@@ -14,11 +34,19 @@ Write the skill → test it on a real repo → review the output → find issues
 
 ## Setup
 
-Before we start, make sure you have:
+If you haven't already, check the prerequisites in [Tutorial 1](01_build-first-agent-skill.md#-what-youll-need).
 
-1. **Node.js** installed (for the skills CLI)
-2. **GitHub Copilot** (with Copilot Chat in VS Code) or **Claude Code** installed
-3. **A project to test against**. Use your own repo, or clone any public repo
+Before you build anything, create or open a separate practice project for the README Wizard.
+
+Do **not** build the skill inside this tutorial repo. This repo already contains the finished reference implementation at `.agents/skills/readme-wizard/`.
+
+Good practice setups:
+
+- A fresh repo like `readme-wizard-lab` with a short, messy README
+- A small existing project you own
+- A cloned public repo with a basic README that clearly needs improvement
+
+Once your practice project is open in your editor, continue with the steps below from inside that project.
 
 
 ## Phase 1: Get Something Working
@@ -53,20 +81,20 @@ Let's start simple. We want a skill that improves a project's README by adding b
 Copy this prompt:
 
 ```
-Replace the contents of .agents/skills/readme-wizard/SKILL.md with a skill that improves project READMEs. The frontmatter should have name: readme-wizard and a description that tells the agent to use this skill whenever someone mentions README, badges, project documentation, or making their repo look professional.
+Replace the contents of .agents/skills/readme-wizard/SKILL.md with a skill that generates or improves project READMEs. The frontmatter should have name: readme-wizard and a description that tells the agent to use this skill whenever someone mentions README, wants to improve their repo's first impression, asks about shields.io badges, star history charts, contributor avatars, documentation tables, project structure trees, or mermaid architecture diagrams — even if they never say the word "README".
 
 The body should tell the agent to:
-1. Detect the project name, description, license, git remote, package manager, and CI setup by reading the project files
-2. Improve the README to include: a centered hero section with the project name and tagline, shields.io badges (license, version, CI, stars) using style=for-the-badge, a "What is this?" section, a Quick Start section with real install/run commands, a project structure tree, a documentation table, a contributing section with contributor avatars from contrib.rocks, social link badges, and a footer with a star history chart
+1. Detect the project name, description, license, git remote, package manager (npm, yarn, pnpm, pip, cargo, go, etc.), and CI setup by reading the project files
+2. Improve the README to include: a centered hero section with the project name and tagline, shields.io badges (license, version, CI, stars) using style=for-the-badge, a "What is this?" section, a Quick Start section with real install/run commands, a project structure tree, a documentation table, a contributing section with contributor avatars from contrib.rocks, social link badges (only if social links exist), and a footer with a star history chart
 ```
 
 The agent writes a SKILL.md with all the instructions inline. Open it and take a look. It should be around 30-50 lines of clear, step-by-step instructions.
 
 ### Step 3: Test it
 
-Let's see if our basic skill works. We'll test it right here in this project — the skill is already in place.
+Let's see if our basic skill works. Test it in your practice project.
 
-Copy this prompt:
+**Start a new chat session** (agents load skills at session start), then copy this prompt:
 
 ```
 Improve the README for this project following the readme-wizard skill instructions.
@@ -90,6 +118,7 @@ If you only need a simple skill, you can stop here.
 ## Troubleshooting
 
 - Verify the skill is in the project you are testing
+- Verify you're running the prompt from your practice project, not this tutorial repo
 - Start a new chat session so the agent re-discovers the skill
 - Check the frontmatter `name:` matches the folder name exactly
 

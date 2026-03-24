@@ -11,7 +11,9 @@ Your skill is just files in a folder. To share it, push it to a GitHub repo so a
 | **Subdirectory** | Tutorials, multi-skill repos | `npx skills add USER/REPO --skill skill-name` |
 | **Dedicated repo** | Standalone skills, easier discovery | `npx skills add USER/skill-name` |
 
-**Which should I choose?** If you're building a skill as part of a larger project (like this tutorial), use a subdirectory. If you want your skill to be easily discoverable on skills.sh, create a dedicated repo.
+**Which should I choose?**
+- **If you're following this tutorial:** Use **Option A (subdirectory)**. If you built the skill in a separate practice repo, this is the simplest path.
+- **If you want standalone discovery on skills.sh:** Use **Option B (dedicated repo)**. This is better for long-term skill distribution.
 
 ---
 
@@ -60,11 +62,20 @@ readme-wizard/          ← repo root
 └── evals/
 ```
 
-Copy this prompt to create a dedicated repo:
+The safest workflow is:
+
+1. Create a new GitHub repo called `readme-wizard`.
+2. Create a local folder for that repo and clone it.
+3. Copy the contents of your skill folder into the repo root so `SKILL.md` sits at the top level.
+4. Commit and push using your normal `git` or `gh` workflow.
+
+If you want your agent to prepare the files locally, use this prompt:
 
 ```
-Copy the readme-wizard skill folder contents from .agents/skills/readme-wizard into a new directory outside this project. Initialize it as a git repo and push it to a new GitHub repo called readme-wizard under my account. Put SKILL.md at the root, not in a subdirectory.
+Copy the readme-wizard skill folder contents from .agents/skills/readme-wizard into a new local directory named readme-wizard-export. Put SKILL.md at the root, not in a subdirectory.
 ```
+
+Then create the remote repo and push it yourself. That's more reliable than assuming your agent has GitHub authentication and permission to publish on your behalf.
 
 Then anyone can install with a clean command:
 
@@ -74,9 +85,9 @@ npx skills add YOUR-USERNAME/readme-wizard
 
 ---
 
-## Install Globally
+## Install Globally (Available in Every Project)
 
-By default, skills install to the current project. To make a skill available in every project, add the `-g` flag:
+By default, skills only work in the project where they're installed. Use the `-g` flag to install a skill so it's available when you work on **any** project on your machine.
 
 ```bash
 # Subdirectory skill
@@ -135,16 +146,6 @@ npx skills update        # Update all installed skills
 npx skills remove        # Remove a skill interactively
 npx skills init my-skill # Scaffold a new skill from a template
 ```
-
-## Prerequisites
-
-Skills are discovered automatically by agents that support the [Agent Skills specification](https://agentskills.io). The skills CLI handles installing to the right location for each agent, but here's what to know:
-
-**GitHub Copilot**: Make sure Copilot Chat is enabled in VS Code. Skills in `.agents/skills/` are discovered automatically at session start.
-
-**Claude Code**: Skills in `.claude/skills/` are discovered automatically at session start.
-
-For both agents, start a **new session** after installing a skill.
 
 ## Troubleshooting (if the skill doesn't install or trigger)
 

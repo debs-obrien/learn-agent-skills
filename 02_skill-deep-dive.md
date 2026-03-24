@@ -10,6 +10,24 @@ Now that you know what skills are, let's look inside one. We'll use a skill call
 
 Only `SKILL.md` is required. Everything else is optional. You add it when you need it.
 
+---
+
+### Hands-On: Verify the Structure
+
+Before we dive into the details, let's get familiar with a real skill folder. This repo includes a finished README Wizard skill you can examine right now.
+
+Treat it as a reference implementation. In Tutorial 3, you'll build your own copy in a separate practice project.
+
+**Copy this prompt and paste it into your agent:**
+
+```
+Show me the contents of the .agents/skills/readme-wizard/ folder and list every file and subfolder. Describe what's in each one in 1-2 sentences.
+```
+
+The agent will display the structure and explain what each piece does. This connects the diagram above to actual files you'll build in later tutorials.
+
+---
+
 ## SKILL.md: The Brain
 
 This is the only required file. It has two parts:
@@ -39,9 +57,7 @@ The body should be under 500 lines. If you need more detail, put it in reference
 
 Scripts handle deterministic, repeatable tasks that the agent would otherwise reinvent every time. For our README Wizard:
 
-- **`scan_project.sh`**. Scans a project directory and outputs JSON with the project name, description, license, git remote, social links, directory structure, package manager, and CI configuration. It searches in three layers: local files → GitHub API → homepage crawl.
-
-- **`check_readme.sh`**. Validates a generated README has all the expected sections (headings, badges, code blocks, etc.) and outputs a pass/fail report.
+- **`scan_project.sh`**. Scans a project directory and outputs JSON with the project name, description, license, git remote, social links, directory structure, package manager, and CI configuration. Your first version can stay local-file only. The finished reference version can be extended later with richer metadata lookups.
 
 The key insight: **scripts run without being loaded into the agent's context**. The agent executes them and reads the output. This saves tokens. A 200-line bash script doesn't eat into the context window.
 
@@ -73,39 +89,7 @@ Evals are test cases that define what "good" looks like. For our README Wizard:
 
 - **`evals.json`**. Contains test prompts and assertions. Each test case has a realistic prompt (like "generate a README for this project") and a list of things the output should contain (badges, quick start section, contributing section, etc.).
 
-Evals are optional but valuable. They're like unit tests for your skill. You can validate the output by running the check script:
-
-```bash
-bash scripts/check_readme.sh /path/to/generated/README.md
-```
-
-```
-🧙 README Wizard: Validation Report
-  File: README.md
-  ────────────────────────────────────
-
-  Structure
-  ✅ Has a top-level heading
-  ✅ Has a project description
-  ✅ Has a Quick Start section
-  ✅ Contains code blocks
-  ✅ Has a project structure section
-  ✅ Has a documentation section
-  ✅ Has a contributing section
-
-  Badges
-  ✅ Has 2+ shields.io badges (7 found)
-  ✅ Uses for-the-badge style
-  ✅ Has social link badges
-
-  Extras
-  ✅ Has star history chart
-  ✅ Has a footer with license info
-  ✅ Has contributor avatars
-
-  ────────────────────────────────────
-  Results: 13 passed, 0 failed
-```
+Evals are optional but valuable. They're like unit tests for your skill — a checklist defining what the output should contain. Each test case has assertions the agent can review the output against to catch issues like placeholder text left in, fabricated badges, or missing sections.
 
 ## Before vs After
 
@@ -113,7 +97,15 @@ Here's what the README Wizard actually produces. The difference between a README
 
 ![Before vs After](assets/before-vs-after.png)
 
-Now you know what a skill looks like and what each piece does. In Part 3, you'll build this exact structure from scratch and experience firsthand why each folder exists.
+### Test Your Understanding
+
+Copy this prompt to verify you've absorbed the key concepts:
+
+```
+Explain what each folder in a skill is used for: SKILL.md, scripts/, references/, assets/, and evals/. Give a one-sentence description for each.
+```
+
+Now you know what a skill looks like and what each piece does. In Tutorial 3, you'll build this exact structure from scratch and experience firsthand why each folder exists.
 
 ## Next Steps
 

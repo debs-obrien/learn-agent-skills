@@ -1,22 +1,34 @@
 # Phase 3: Refactor Into the Skill Structure
 
-**Success check:** List the contents of the readme-wizard skill folder and confirm you see `references/`, `assets/`, and `scripts/`. Run the scan script and verify it outputs valid JSON.
+**Success check:** List the contents of the readme-wizard skill folder and confirm you see `references/`, `assets/`, and `scripts/`. Run the scan script and verify it outputs valid JSON from local project files.
 
 > **Claude Code users:** Replace `.agents/skills/` with `.claude/skills/` in the prompts below.
+
+### Prerequisites Checklist for Phase 3
+
+Before you start, verify you have:
+
+- ✅ Tutorial 4 completed (detailed SKILL.md with best practices, badges, diagrams)
+- ✅ Skill tested twice with consistent results
+- ✅ `.agents/skills/readme-wizard/SKILL.md` is around 150+ lines
+
+**Note:** This phase requires bash scripts. **Windows users:** Make sure you have WSL2 or Git Bash set up (see Tutorial 1 for setup link). If not set up, you can skip the script sections.
+
+---
 
 Now we're going to break the bloated SKILL.md into separate files. Each extraction has a clear reason. By the end, you'll understand exactly why skills have the folder structure they do.
 
 ### Step 6: Extract best practices → `references/`
 
-The best practices section is 40+ lines of writing guidance. The agent only needs this when it's about to write the README, not every time the skill loads. By moving it to a reference file, the agent reads it on demand instead of loading it into context upfront. This is what the `references/` folder is for: domain knowledge that loads only when needed.
+The best practices section is 40+ lines of writing guidance — structure, tone, project-type adaptation, common pitfalls. The agent only needs this when it's about to write the README, not every time the skill loads. By moving it to a reference file, the agent reads it on demand instead of loading it into context upfront. This is what the `references/` folder is for: domain knowledge that loads only when needed.
 
 Copy this prompt:
 
 ```
-The best practices section in our SKILL.md is making the file too long. Move it into a new file at .agents/skills/readme-wizard/references/readme-best-practices.md. Include a table of contents at the top. Then update the SKILL.md to replace that section with a single line: "Read references/readme-best-practices.md for guidance on structure, tone, and what makes a README great."
+The best practices section in our SKILL.md is making the file too long. Move it into a new file at .agents/skills/readme-wizard/references/readme-best-practices.md. Include a table of contents at the top with sections for Structure and Order, Writing Tone, Adapting to Project Type, Badge Best Practices, and Common Pitfalls. Then update the SKILL.md to tell the agent: "Read references/readme-best-practices.md before writing. It covers structure, tone, project-type adaptation, and common pitfalls."
 ```
 
-The agent creates the reference file and updates the SKILL.md. Open both files. Notice how the SKILL.md is shorter and focused on the steps, while the reference file has all the deep knowledge about README writing.
+The agent creates the reference file and updates the SKILL.md. Open both files. Notice how the SKILL.md is shorter and focused on the workflow steps, while the reference file has all the deep knowledge about README writing — including how to adapt the output for different project types and what mistakes to avoid.
 
 ### Step 7: Extract badge templates → `assets/`
 
@@ -39,24 +51,24 @@ This is also a good example of **selective loading**. Not every project needs an
 Copy this prompt:
 
 ```
-Move the README template from SKILL.md into .agents/skills/readme-wizard/assets/readme-template.md with {{PLACEHOLDER}} markers for dynamic content. Also move the Mermaid diagram templates into .agents/skills/readme-wizard/assets/diagrams.md with templates for common project types. Update the SKILL.md to reference both files.
+Move the README template from SKILL.md into .agents/skills/readme-wizard/assets/readme-template.md with {{PLACEHOLDER}} markers for dynamic content. For the social links section, use an HTML comment that says to include the section ONLY if the project has social links and remove it entirely if none exist, with the heading "Connect". Also move the Mermaid diagram templates into .agents/skills/readme-wizard/assets/diagrams.md with templates for common project types. Update the SKILL.md to tell the agent to use the template as the base structure, replace placeholders with actual project data, and adapt rather than copy blindly — dropping sections that don't apply and adjusting tone to match the project type.
 ```
 
 The agent creates both asset files and updates the SKILL.md. The instructions now say "use this template" and "pick a diagram from these templates" instead of embedding them inline.
 
 ### Step 9: Extract scanning logic → `scripts/`
 
-Here's a big one. Every time we test the skill, the agent writes the same code to parse package.json, read the git remote, check for a license file, and detect the CI setup. That's wasted tokens and it's error-prone: sometimes it parses the git remote wrong, sometimes it misses the CI workflow. By moving this into a bash script, the agent runs it once and gets clean JSON back. This is what the `scripts/` folder is for: deterministic, repeatable work that runs without loading into the agent's context.
+Here's a big one. Every time we test the skill, the agent writes the same code to parse package files, read the git remote, check for a license file, and detect the CI setup. That's wasted tokens and it's error-prone: sometimes it parses the remote wrong, sometimes it misses the workflow file. By moving this into a bash script, the agent runs it once and gets clean JSON back. This is what the `scripts/` folder is for: deterministic, repeatable work that runs without loading into the agent's context.
+
+Keep the first version boring and reliable. Start with local files only. Once that works, you can add richer metadata lookups later if you want them.
 
 Copy this prompt:
 
 ```
-Create .agents/skills/readme-wizard/scripts/scan_project.sh that takes a project directory path and outputs JSON with everything we need: project name, description, license, git remote (owner/repo), package manager, CI setup, social links, and directory structure. For social links, search local project files first, then the GitHub API for the homepage URL, then crawl the homepage for links in the footer. Also resolve YouTube channel IDs and Discord server IDs so we can use live count badges. Make sure it works on both macOS and Linux. Use Node.js, Python, or standard grep/sed to parse files so it works without requiring external libraries like jq. Make it executable and update the SKILL.md to reference it.
+Create .agents/skills/readme-wizard/scripts/scan_project.sh that takes a project directory path and outputs JSON with the project name, description, license, git remote (owner/repo if available), package manager, CI setup, social links found in local project files, and directory structure (top 2 levels). Support detecting package managers for npm, yarn, pnpm, pip, cargo, Go (go.mod/go.sum), Gradle, and Deno. For Go projects, parse go.mod to extract the module path. For the directory structure, exclude hidden folders and files plus tool-specific folders that should not appear in the generated README, such as .git, .agents, .claude, node_modules, dist, and build. Also omit the root `.` entry so the tree is ready to paste into the README without cleanup. Return empty strings or empty arrays for anything the script can't find. Make sure it works on both macOS and Linux. Use portable bash plus Node.js, Python, or standard grep/sed only if needed. Do not call external APIs in this first version. Make it executable and update the SKILL.md to reference it.
 ```
 
 The agent creates the script and updates the SKILL.md. Now instead of the agent writing scanning code from scratch every time, it runs one script and gets structured JSON back. Faster, more reliable, and it doesn't eat into the context window.
-
-**(Important:** If the agent fails to make the script executable, you will get a permission denied error later! Open a terminal and physically run `chmod +x .agents/skills/readme-wizard/scripts/scan_project.sh` to be safe.)
 
 Test the script right away.
 
@@ -68,10 +80,19 @@ Run the scan_project.sh script on this project directory and show me the JSON ou
 
 You should see clean JSON with all the detected metadata.
 
+### Optional upgrades later
+
+If the local-file version is working and you want to go further, you can add enrichment in a second pass:
+
+- Query the GitHub API for homepage or repository metadata
+- Crawl the homepage for social links the repo does not expose locally
+- Normalize YouTube or Discord URLs for live count badges
+
+Those are useful upgrades, but they are not required for the tutorial to succeed.
+
 ## Prerequisites and Limits
 
 - The script assumes bash, `grep`, `sed`, and `curl` are available
-- GitHub API lookups can hit rate limits; set `GITHUB_TOKEN` for reliability
 - On Windows, use WSL to run the script
 
 ## Troubleshooting
@@ -81,14 +102,15 @@ You should see clean JSON with all the detected metadata.
   Make the scan_project.sh script executable.
   ```
 - Run it with a full path to the project directory
-- If GitHub API fails, verify your `GITHUB_TOKEN` or remove the API step temporarily
+- If the JSON is malformed, reduce the fields first and get a minimal version working before you add more detection logic
+- If the project tree includes `.agents`, `.claude`, `node_modules`, or other internal folders, tighten your `find` filters before using it in the README
 
 ## Stuck? Check the Reference Code
 
-If your files are getting a little messy or you aren't sure if the folder structure is right, remember that **the finished version of this skill is included right here in the repository!** You can peek at the `.agents/skills/readme-wizard/` folder anytime to compare your work against the final "perfect" version.
+If your files are getting a little messy or you aren't sure if the folder structure is right, remember that **the finished version of this skill is included right here in the repository.** Compare your work against `.agents/skills/readme-wizard/` after you have your own version working in your separate practice project.
 
 ## Next Steps
 
-Your skill is now properly structured. Let's add validation and test it end-to-end.
+Your skill is now properly structured. Let's add evals and test it end-to-end.
 
 **Next:** [Tutorial 6: Build the README Wizard — Phase 4 →](06_build-readme-wizard-skill-part_4.md)
