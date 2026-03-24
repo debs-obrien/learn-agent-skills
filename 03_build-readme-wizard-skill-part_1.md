@@ -12,9 +12,9 @@ Before you start, make sure you have:
 
 - ✅ Tutorial 1 completed (you built the `good-morning` skill)
 - ✅ Tutorial 2 read (you understand the skill folder structure)
-- ✅ VS Code or your editor open with your project
+- ✅ VS Code or your editor open with your practice project
 - ✅ Your agent (GitHub Copilot, Claude Code, or Cursor) ready to chat
-- ✅ A test project ready (use your own repo, or clone any public repo to test on)
+- ✅ A practice project ready (create a new folder/repo, or clone a small public repo with a rough README)
 
 ---
 
@@ -35,6 +35,18 @@ Write the skill → test it on a real repo → review the output → find issues
 ## Setup
 
 If you haven't already, check the prerequisites in [Tutorial 1](01_build-first-agent-skill.md#-what-youll-need).
+
+Before you build anything, create or open a separate practice project for the README Wizard.
+
+Do **not** build the skill inside this tutorial repo. This repo already contains the finished reference implementation at `.agents/skills/readme-wizard/`.
+
+Good practice setups:
+
+- A fresh repo like `readme-wizard-lab` with a short, messy README
+- A small existing project you own
+- A cloned public repo with a basic README that clearly needs improvement
+
+Once your practice project is open in your editor, continue with the steps below from inside that project.
 
 
 ## Phase 1: Get Something Working
@@ -80,7 +92,7 @@ The agent writes a SKILL.md with all the instructions inline. Open it and take a
 
 ### Step 3: Test it
 
-Let's see if our basic skill works. We'll test it right here in this project — the skill is already in place.
+Let's see if our basic skill works. Test it in your practice project.
 
 **Start a new chat session** (agents load skills at session start), then copy this prompt:
 
@@ -106,6 +118,7 @@ If you only need a simple skill, you can stop here.
 ## Troubleshooting
 
 - Verify the skill is in the project you are testing
+- Verify you're running the prompt from your practice project, not this tutorial repo
 - Start a new chat session so the agent re-discovers the skill
 - Check the frontmatter `name:` matches the folder name exactly
 

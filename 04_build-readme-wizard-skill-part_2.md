@@ -30,6 +30,8 @@ The agent updates the SKILL.md with all this detail. Open it and look at the fil
 
 Let's test the improved version.
 
+Run this in your practice project.
+
 Copy this prompt:
 
 ```

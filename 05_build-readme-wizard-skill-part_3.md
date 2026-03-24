@@ -1,6 +1,6 @@
 # Phase 3: Refactor Into the Skill Structure
 
-**Success check:** List the contents of the readme-wizard skill folder and confirm you see `references/`, `assets/`, and `scripts/`. Run the scan script and verify it outputs valid JSON.
+**Success check:** List the contents of the readme-wizard skill folder and confirm you see `references/`, `assets/`, and `scripts/`. Run the scan script and verify it outputs valid JSON from local project files.
 
 > **Claude Code users:** Replace `.agents/skills/` with `.claude/skills/` in the prompts below.
 
@@ -58,12 +58,14 @@ The agent creates both asset files and updates the SKILL.md. The instructions no
 
 ### Step 9: Extract scanning logic → `scripts/`
 
-Here's a big one. Every time we test the skill, the agent writes the same code to parse package.json, read the git remote, check for a license file, and detect the CI setup. That's wasted tokens and it's error-prone: sometimes it parses the git remote wrong, sometimes it misses the CI workflow. By moving this into a bash script, the agent runs it once and gets clean JSON back. This is what the `scripts/` folder is for: deterministic, repeatable work that runs without loading into the agent's context.
+Here's a big one. Every time we test the skill, the agent writes the same code to parse package files, read the git remote, check for a license file, and detect the CI setup. That's wasted tokens and it's error-prone: sometimes it parses the remote wrong, sometimes it misses the workflow file. By moving this into a bash script, the agent runs it once and gets clean JSON back. This is what the `scripts/` folder is for: deterministic, repeatable work that runs without loading into the agent's context.
+
+Keep the first version boring and reliable. Start with local files only. Once that works, you can add richer metadata lookups later if you want them.
 
 Copy this prompt:
 
 ```
-Create .agents/skills/readme-wizard/scripts/scan_project.sh that takes a project directory path and outputs JSON with everything we need: project name, description, license, git remote (owner/repo), package manager, CI setup, social links, and directory structure (top 2 levels). Support detecting package managers for npm, yarn, pnpm, pip, cargo, Go (go.mod/go.sum), Gradle, and Deno. For Go projects, parse go.mod to extract the project name from the module path. For social links, search local project files first, then the GitHub API for the homepage URL, then crawl the homepage for links in the footer. Also resolve YouTube channel IDs and Discord server IDs so we can use live count badges. Return empty strings for anything the script can't find. Make sure it works on both macOS and Linux. Use Node.js, Python, or standard grep/sed to parse files so it works without requiring external libraries like jq. Make it executable and update the SKILL.md to reference it.
+Create .agents/skills/readme-wizard/scripts/scan_project.sh that takes a project directory path and outputs JSON with the project name, description, license, git remote (owner/repo if available), package manager, CI setup, social links found in local project files, and directory structure (top 2 levels). Support detecting package managers for npm, yarn, pnpm, pip, cargo, Go (go.mod/go.sum), Gradle, and Deno. For Go projects, parse go.mod to extract the module path. Return empty strings or empty arrays for anything the script can't find. Make sure it works on both macOS and Linux. Use portable bash plus Node.js, Python, or standard grep/sed only if needed. Do not call external APIs in this first version. Make it executable and update the SKILL.md to reference it.
 ```
 
 The agent creates the script and updates the SKILL.md. Now instead of the agent writing scanning code from scratch every time, it runs one script and gets structured JSON back. Faster, more reliable, and it doesn't eat into the context window.
@@ -78,6 +80,16 @@ Run the scan_project.sh script on this project directory and show me the JSON ou
 
 You should see clean JSON with all the detected metadata.
 
+### Optional upgrades later
+
+If the local-file version is working and you want to go further, you can add enrichment in a second pass:
+
+- Query the GitHub API for homepage or repository metadata
+- Crawl the homepage for social links the repo does not expose locally
+- Normalize YouTube or Discord URLs for live count badges
+
+Those are useful upgrades, but they are not required for the tutorial to succeed.
+
 ## Prerequisites and Limits
 
 - The script assumes bash, `grep`, `sed`, and `curl` are available
@@ -90,11 +102,11 @@ You should see clean JSON with all the detected metadata.
   Make the scan_project.sh script executable.
   ```
 - Run it with a full path to the project directory
-- If GitHub API fails, check your network connection or remove the API step temporarily
+- If the JSON is malformed, reduce the fields first and get a minimal version working before you add more detection logic
 
 ## Stuck? Check the Reference Code
 
-If your files are getting a little messy or you aren't sure if the folder structure is right, remember that **the finished version of this skill is included right here in the repository!** You can peek at the `.agents/skills/readme-wizard/` folder anytime to compare your work against the final "perfect" version.
+If your files are getting a little messy or you aren't sure if the folder structure is right, remember that **the finished version of this skill is included right here in the repository.** Compare your work against `.agents/skills/readme-wizard/` after you have your own version working in your separate practice project.
 
 ## Next Steps
 

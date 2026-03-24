@@ -19,7 +19,8 @@ Once you choose, stick with it consistently. All prompts will use `.agents/` as 
 
 - **An AI coding agent**: [GitHub Copilot](https://github.com/features/copilot), [Claude Code](https://docs.anthropic.com/en/docs/claude-code), or [Cursor](https://cursor.sh)
 - **Node.js**: needed for the skills CLI in Tutorial 7 (`npx skills add`)
-- **A project to test against**: your own repo, or any public repo you can clone
+- **A practice project**: create a fresh folder or repo where you'll build the exercises from Tutorials 3-7
+- **A project to test against**: your own repo, your practice project, or any public repo you can clone
 - **Windows only**: Starting in Tutorial 5, we create bash scripts. You'll need **WSL2** or **Git Bash** to run them. [Set up WSL2](https://learn.microsoft.com/en-us/windows/wsl/install) now if you don't have it, or you can skip the script sections and have the agent do the work inline instead.
 
 ---
@@ -91,7 +92,9 @@ Let's build one.
 
 ## Build Your First Skill
 
-Open VS Code in your project directory. We're going to create a `good-morning` skill step by step.
+Open VS Code in the project where you want this skill to live. For the rest of the series, use a separate practice project for the README Wizard exercises rather than editing this tutorial repo directly.
+
+We're going to create a `good-morning` skill step by step.
 
 **Step 1: Create the skill folder and file**
 
@@ -142,7 +145,7 @@ The agent creates a complete `SKILL.md` with frontmatter and instructions. Open 
 
 - **The name must match the folder name.** If the folder is called `good-morning`, the name must be `good-morning`. If they don't match, the skill will not load.
 
-- **The name and description are always in context.** Every time you're working in this project, the agent sees the name and description so it knows what skills are available.
+- **The name and description are always in context.** Every time you're working in a project or personal skills directory where the skill is installed, the agent sees the name and description so it knows what skills are available.
 
 - **The body only loads when triggered.** Everything below the frontmatter only gets added to context when the skill is called, not all the time.
 

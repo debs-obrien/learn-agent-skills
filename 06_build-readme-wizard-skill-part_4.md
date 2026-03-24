@@ -29,7 +29,7 @@ The agent creates the evals file. You now have a formal definition of what the s
 
 ### Step 11: Test the final version
 
-Let's test the fully refactored skill end-to-end. The agent will now use the scan script, read the reference file, pick badges from the catalog, fill in the template, and improve the README.
+Let's test the fully refactored skill end-to-end. Run this in your practice project first. If you want a tougher test, clone a second repo and try it there too. The agent will now use the scan script, read the reference file, pick badges from the catalog, fill in the template, and improve the README.
 
 Copy this prompt:
 
@@ -63,10 +63,12 @@ If something's wrong, that's the build loop in action. Fix the issue and test ag
 When we built this skill, we went through several rounds of fixes. These are common issues you might hit too:
 - **Git remote parsing**: HTTPS URLs weren't extracting owner/repo correctly
 - **CI workflow detection**: it missed workflow files with non-standard names like `playwright.yml`
-- **YouTube URL formats**: the regex only handled `/@handle` but not `/c/name`
 - **Social link guessing**: the agent invented social media handles that didn't exist
+- **Install command drift**: the generated Quick Start section didn't always match the actual package manager or scripts
 
-Each bug led to a fix in the scan script and a new rule in the SKILL.md. That's normal. Skills get better through iteration.
+Each bug led to a fix in the scan script or a new rule in the SKILL.md. That's normal. Skills get better through iteration.
+
+If you later add optional GitHub API or homepage enrichment, expect another round of URL normalization issues for things like YouTube and Discord links.
 
 ## What We Built
 
@@ -89,7 +91,7 @@ Look at your skill folder now:
 
 Every folder earned its place. We didn't start with this structure. We started with one file, hit the limits, and extracted pieces as we needed them. That's how real skills get built.
 
-Want to compare your skill against ours? Check out the finished **README Wizard skill** right here in this repository under the `.agents/skills/readme-wizard/` folder! It includes all the files, scripts, and examples we've built.
+Want to compare your skill against ours? Check out the finished **README Wizard skill** right here in this repository under the `.agents/skills/readme-wizard/` folder. Use it as a reference implementation after you've built your own copy in your practice project.
 
 ## Next Steps
 

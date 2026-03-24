@@ -16,6 +16,8 @@ Only `SKILL.md` is required. Everything else is optional. You add it when you ne
 
 Before we dive into the details, let's get familiar with a real skill folder. This repo includes a finished README Wizard skill you can examine right now.
 
+Treat it as a reference implementation. In Tutorial 3, you'll build your own copy in a separate practice project.
+
 **Copy this prompt and paste it into your agent:**
 
 ```
@@ -55,7 +57,7 @@ The body should be under 500 lines. If you need more detail, put it in reference
 
 Scripts handle deterministic, repeatable tasks that the agent would otherwise reinvent every time. For our README Wizard:
 
-- **`scan_project.sh`**. Scans a project directory and outputs JSON with the project name, description, license, git remote, social links, directory structure, package manager, and CI configuration. It searches in three layers: local files → GitHub API → homepage crawl.
+- **`scan_project.sh`**. Scans a project directory and outputs JSON with the project name, description, license, git remote, social links, directory structure, package manager, and CI configuration. Your first version can stay local-file only. The finished reference version can be extended later with richer metadata lookups.
 
 The key insight: **scripts run without being loaded into the agent's context**. The agent executes them and reads the output. This saves tokens. A 200-line bash script doesn't eat into the context window.
 

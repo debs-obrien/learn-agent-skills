@@ -26,11 +26,22 @@ cd learn-agent-skills
 
 Open it in VS Code (or your preferred editor with an AI agent) and follow the tutorials in order.
 
+## Recommended Workflow
+
+Use this repository as the guide and reference implementation, but do the hands-on exercises in a separate practice project.
+
+1. Clone this repo and keep it open for the tutorial instructions.
+2. Create a second folder or repo for the exercises, for example `readme-wizard-lab`.
+3. Build your own skill in that practice project.
+4. Compare your work against the finished reference skill in `.agents/skills/readme-wizard/` only when you need to check your structure or debug a step.
+
 ## How to Follow This Tutorial
 
 Each step gives you a **prompt to copy** — paste it into your AI agent (GitHub Copilot, Claude Code, Cursor, etc.) and let the agent do the work. That's the whole point: you're learning to work *with* your agent.
 
 > **Claude Code users:** Use `.claude/skills/` instead of `.agents/skills/` for your skill folders.
+
+> **Important:** Don't build the README Wizard directly inside this repo. This repo already contains a finished version for reference.
 
 ## Tutorials
 
@@ -38,7 +49,7 @@ Each step gives you a **prompt to copy** — paste it into your AI agent (GitHub
 |---|----------|-------------------|
 | 1 | [Build Your First Skill](01_build-first-agent-skill.md) | What skills are, how they work, and build a simple one |
 | 2 | [Anatomy of a Skill](02_skill-deep-dive.md) | The folder structure, how skills get loaded, and progressive disclosure |
-| 3 | [Build the README Wizard — Phase 1](03_build-readme-wizard-skill-part_1.md) | Create the skill folder, write a basic SKILL.md, and test it |
+| 3 | [Build the README Wizard — Phase 1](03_build-readme-wizard-skill-part_1.md) | Set up a practice project, create the skill folder, write a basic SKILL.md, and test it |
 | 4 | [Build the README Wizard — Phase 2](04_build-readme-wizard-skill-part_2.md) | Add detail: badges, best practices, templates, and diagrams |
 | 5 | [Build the README Wizard — Phase 3](05_build-readme-wizard-skill-part_3.md) | Refactor into the skill folder structure with references, assets, and scripts |
 | 6 | [Build the README Wizard — Phase 4](06_build-readme-wizard-skill-part_4.md) | Add validation, evals, and test end-to-end |
@@ -79,7 +90,8 @@ learn-agent-skills/
 ## Prerequisites
 
 - **An AI coding agent**: [GitHub Copilot](https://github.com/features/copilot), [Claude Code](https://docs.anthropic.com/en/docs/claude-code), [Cursor](https://cursor.sh), or any [skills-compatible agent](https://skills.sh)
-- **A project to test against**: your own repo, or clone any public repo
+- **A practice project**: create a fresh folder or repo where you'll build the skill during the tutorials
+- **A project to test against**: your practice project, your own repo, or any public repo you can clone
 
 ## Use the skill on any project
 
