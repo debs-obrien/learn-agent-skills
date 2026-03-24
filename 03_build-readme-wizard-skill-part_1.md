@@ -4,6 +4,26 @@ Time to build the README Wizard from scratch. We'll start simple, get something 
 
 **Success check:** Run the skill on a test project and confirm the README now has shields.io badges, a Quick Start section, and a project structure tree.
 
+---
+
+### Prerequisites Checklist
+
+Before you start, make sure you have:
+
+- ✅ Tutorial 1 completed (you built the `good-morning` skill)
+- ✅ Tutorial 2 read (you understand the skill folder structure)
+- ✅ VS Code or your editor open with your project
+- ✅ Your agent (GitHub Copilot, Claude Code, or Cursor) ready to chat
+- ✅ A test project ready (use your own repo, or clone any public repo to test on)
+
+---
+
+### 💡 Quick Reminder
+
+Each step has **"Copy this prompt"** sections. Just copy the text, paste it into your agent's chat, and let the agent do the work. If you're using Claude Code, remember to swap `.agents/` to `.claude/` in the prompts.
+
+---
+
 ## The Build Loop
 
 This is the process we'll follow throughout:
@@ -66,7 +86,7 @@ The agent writes a SKILL.md with all the instructions inline. Open it and take a
 
 Let's see if our basic skill works. We'll test it right here in this project — the skill is already in place.
 
-Copy this prompt:
+**Start a new chat session** (agents load skills at session start), then copy this prompt:
 
 ```
 Improve the README for this project following the readme-wizard skill instructions.

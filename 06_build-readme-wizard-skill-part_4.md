@@ -4,6 +4,17 @@
 
 **Prerequisites:** Bash, `grep`, `sed`, and `curl`. If you want GitHub API lookups, set `GITHUB_TOKEN` to avoid rate limits. On Windows, use WSL for the scripts.
 
+### Prerequisites Checklist for Phase 4
+
+Before you start, verify you have:
+
+- ✅ Tutorial 5 completed (references, assets, and scripts folders exist)
+- ✅ `scan_project.sh` tested successfully (outputs valid JSON)
+- ✅ Scripts are executable (ran `chmod +x` or confirmed they work)
+- ✅ Agent ready for a new chat session
+
+---
+
 ### Step 10: Add a validation script
 
 We want a quick way to check if a generated README has all the expected sections. This is another good use of `scripts/`: a repeatable check that gives us a pass/fail report.
@@ -16,7 +27,7 @@ Create .agents/skills/readme-wizard/scripts/check_readme.sh that takes a README 
 
 The agent creates the validation script. Now we can check any generated README instantly.
 
-*(Tip: Just like in the previous step, make sure to manually run `chmod +x .agents/skills/readme-wizard/scripts/check_readme.sh` in your terminal if the agent forgot to make it executable!)*
+(If you skipped Tutorial 5's script section or the script won't run, see "Scripts Must Be Executable" in Tutorial 5 for the fix.)
 
 ### Step 11: Add evals
 

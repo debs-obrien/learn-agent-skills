@@ -11,7 +11,9 @@ Your skill is just files in a folder. To share it, push it to a GitHub repo so a
 | **Subdirectory** | Tutorials, multi-skill repos | `npx skills add USER/REPO --skill skill-name` |
 | **Dedicated repo** | Standalone skills, easier discovery | `npx skills add USER/skill-name` |
 
-**Which should I choose?** If you're building a skill as part of a larger project (like this tutorial), use a subdirectory. If you want your skill to be easily discoverable on skills.sh, create a dedicated repo.
+**Which should I choose?**
+- **If you're following this tutorial:** Use **Option A (subdirectory)**. Your skill is already in the repo, so this is the simpler path.
+- **If you want standalone discovery on skills.sh:** Use **Option B (dedicated repo)**. This is better for long-term skill distribution.
 
 ---
 
@@ -74,9 +76,9 @@ npx skills add YOUR-USERNAME/readme-wizard
 
 ---
 
-## Install Globally
+## Install Globally (Available in Every Project)
 
-By default, skills install to the current project. To make a skill available in every project, add the `-g` flag:
+By default, skills only work in the project where they're installed. Use the `-g` flag to install a skill so it's available when you work on **any** project on your machine.
 
 ```bash
 # Subdirectory skill

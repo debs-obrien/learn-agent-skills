@@ -2,6 +2,16 @@
 
 **Success check:** Run the skill twice on the same project. Both outputs should have the same section order, badge style (`style=for-the-badge`), and tone.
 
+### Prerequisites Checklist for Phase 2
+
+Before you start, verify you have:
+
+- ✅ Tutorial 3 completed (`.agents/skills/readme-wizard/SKILL.md` exists and works)
+- ✅ Basic skill tested successfully (you generated a README once)
+- ✅ Agent ready in a new chat session
+
+---
+
 ### Step 4: Flesh out the SKILL.md
 
 The basic skill works but the output is inconsistent. Let's add more detail to the instructions: specific badge formats, best practices for writing tone, project-type adaptation, common pitfalls to avoid, a template for the README structure, and clearer rules.

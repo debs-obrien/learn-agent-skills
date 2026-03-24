@@ -4,6 +4,41 @@ Learn what agent skills are, how they work, and build one from scratch using you
 
 **Success check:** You can say "Good morning" in a new chat and the agent responds using your `good-morning` skill.
 
+---
+
+### 🎯 Choose Your Path First
+
+Pick your agent and use the corresponding skill folder path throughout **all 7 tutorials**:
+
+- **GitHub Copilot or Cursor users:** Use `.agents/skills/`
+- **Claude Code users:** Use `.claude/skills/`
+
+Once you choose, stick with it consistently. All prompts will use `.agents/` as the example — if you're using Claude Code, swap it to `.claude/` every time you see it.
+
+**Note for Windows Users:** Starting in Tutorial 5, we'll create bash scripts. You'll need **WSL2** (Windows Subsystem for Linux) or **Git Bash** to run them. [Set up WSL2](https://learn.microsoft.com/en-us/windows/wsl/install) now if you don't have it, or you can skip the script sections and have the agent do the work inline instead.
+
+---
+
+### 📋 How to Use This Tutorial
+
+Throughout the tutorial, you'll see **"Copy this prompt"** sections that look like this:
+
+```
+Create a new skill folder at .agents/skills/good-morning/ with an empty SKILL.md file inside it.
+```
+
+**Here's what to do:**
+1. Click inside the code block
+2. Select all the text (Ctrl+A or Cmd+A)
+3. Copy it (Ctrl+C or Cmd+C)
+4. Open your AI agent's chat (GitHub Copilot, Claude Code, Cursor, etc.)
+5. Paste the prompt (Ctrl+V or Cmd+V)
+6. Press Enter and let the agent do the work
+
+That's the whole point of skills: you work *with* your agent, not instead of it.
+
+---
+
 ### What you'll build in this tutorial
 
 We're going to build a simple `good-morning` skill that teaches your agent to greet you in a personalized way. It's a quick win that shows you how skills work before we tackle something bigger.
@@ -67,9 +102,9 @@ Open VS Code in your project directory. We're going to create a `good-morning` s
 
 **Step 1: Create the skill folder and file**
 
-We need a folder for our skill with a `SKILL.md` file inside it. The `.agents/skills/` path is the cross-agent convention that works with Copilot, Goose, and others. Claude Code requires `.claude/skills/` instead.
+We need a folder for our skill with a `SKILL.md` file inside it.
 
-Copy this prompt:
+Copy this prompt and paste it into your AI agent's chat:
 
 ```
 Create a new skill folder at .agents/skills/good-morning/ with an empty SKILL.md file inside it.
@@ -85,7 +120,7 @@ your-project/
             └── SKILL.md
 ```
 
-> **Claude Code users:** Use `.claude/skills/good-morning/` instead.
+The agent will create the folder structure for you. After it's done, verify you can see the new folders in VS Code's file explorer.
 
 **Step 2: Write the skill**
 
@@ -122,7 +157,7 @@ Make it as personal as you like — put your own name in there, change the topic
 
 ### Test it
 
-Start a **new chat session** (skills are discovered at session start) and test the skill.
+Start a **new chat session** (this is critical — agents discover and load skills at session start, not mid-conversation) and test the skill.
 
 Copy this prompt:
 

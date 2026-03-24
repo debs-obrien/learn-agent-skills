@@ -10,6 +10,22 @@ Now that you know what skills are, let's look inside one. We'll use a skill call
 
 Only `SKILL.md` is required. Everything else is optional. You add it when you need it.
 
+---
+
+### Hands-On: Verify the Structure
+
+Before we dive into the details, let's get familiar with a real skill folder. This repo includes a finished README Wizard skill you can examine right now.
+
+**Copy this prompt and paste it into your agent:**
+
+```
+Show me the contents of the .agents/skills/readme-wizard/ folder and list every file and subfolder. Describe what's in each one in 1-2 sentences.
+```
+
+The agent will display the structure and explain what each piece does. This connects the diagram above to actual files you'll build in later tutorials.
+
+---
+
 ## SKILL.md: The Brain
 
 This is the only required file. It has two parts:
