@@ -215,9 +215,21 @@ collect_social_links() {
 
 SOCIAL_LINKS=$(collect_social_links)
 
-# ---------- directory structure (top 2 levels, skip hidden dirs & node_modules) ----------
+# ---------- directory structure (top 2 levels, folder-first ordering) ----------
 
-DIR_STRUCTURE=$(find . -maxdepth 2 \
+DIR_STRUCTURE=$(while IFS= read -r path; do
+  rel_path="${path#./}"
+
+  if [[ -z "$rel_path" || "$rel_path" == "." ]]; then
+    continue
+  fi
+
+  if [[ -d "$path" ]]; then
+    printf '0\t%s/\n' "$rel_path"
+  else
+    printf '1\t%s\n' "$rel_path"
+  fi
+done < <(find . -maxdepth 2 \
   -not -path '*/\.*' \
   -not -path './node_modules/*' \
   -not -path './dist/*' \
@@ -227,10 +239,10 @@ DIR_STRUCTURE=$(find . -maxdepth 2 \
   -not -path './__pycache__/*' \
   -not -path './venv/*' \
   -not -path './.venv/*' \
-  -not -name '*.pyc' \
-  | sort \
+  -not -name '*.pyc') \
+  | LC_ALL=C sort -t $'\t' -k1,1 -k2,2 \
+  | cut -f2 \
   | head -50 \
-  | sed 's|^\./||' \
   || echo "")
 
 # ---------- output JSON ----------
