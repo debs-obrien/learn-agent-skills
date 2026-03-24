@@ -23,6 +23,8 @@
 
 Not every project needs every section. A 50-line CLI tool doesn't need a documentation table with 8 rows. A personal learning repo probably doesn't need a Contributing section. Use judgment — the structure serves the reader, not a checklist.
 
+When you include a project structure, make it feel like a real repo browser view: directories first, then files, each group alphabetized. Add trailing `/` markers to directories so the hierarchy scans quickly.
+
 ## Writing Tone
 
 - **Be concise.** Every sentence should earn its place.

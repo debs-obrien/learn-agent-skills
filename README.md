@@ -59,13 +59,6 @@ Each step gives you a **prompt to copy** — paste it into your AI agent (GitHub
 
 ```
 learn-agent-skills/
-├── 01_build-first-agent-skill.md          # Tutorial 1: What skills are
-├── 02_skill-deep-dive.md                  # Tutorial 2: Anatomy of a skill
-├── 03_build-readme-wizard-skill-part_1.md # Tutorial 3: Phase 1 — Get it working
-├── 04_build-readme-wizard-skill-part_2.md # Tutorial 4: Phase 2 — Add detail
-├── 05_build-readme-wizard-skill-part_3.md # Tutorial 5: Phase 3 — Refactor
-├── 06_build-readme-wizard-skill-part_4.md # Tutorial 6: Phase 4 — Validate
-├── 07_share-your-skill.md                 # Tutorial 7: Share it
 ├── .agents/
 │   └── skills/
 │       ├── good-morning/                  # Example skill from Tutorial 1
@@ -83,6 +76,15 @@ learn-agent-skills/
 │           └── evals/
 │               └── evals.json
 ├── assets/                                # Images used in the tutorials
+├── .gitignore
+├── 01_build-first-agent-skill.md          # Tutorial 1: What skills are
+├── 02_skill-deep-dive.md                  # Tutorial 2: Anatomy of a skill
+├── 03_build-readme-wizard-skill-part_1.md # Tutorial 3: Phase 1 — Get it working
+├── 04_build-readme-wizard-skill-part_2.md # Tutorial 4: Phase 2 — Add detail
+├── 05_build-readme-wizard-skill-part_3.md # Tutorial 5: Phase 3 — Refactor
+├── 06_build-readme-wizard-skill-part_4.md # Tutorial 6: Phase 4 — Validate
+├── 07_share-your-skill.md                 # Tutorial 7: Share it
+├── CLAUDE.md
 ├── LICENSE
 └── README.md
 ```

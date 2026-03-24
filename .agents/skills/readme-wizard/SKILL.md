@@ -33,6 +33,8 @@ Read `references/readme-best-practices.md` before writing. It covers structure, 
 
 Use `assets/readme-template.md` as the base structure. Replace `{{PLACEHOLDER}}` markers with actual project data from the scan.
 
+When rendering the project tree, keep it close to how people browse repos: list directories before files, alphabetize within each group, and add trailing `/` markers for directories.
+
 **Adapt — don't copy blindly.** The template is a starting point. Drop sections that don't apply (e.g., no Contributing section for a personal notes repo) and adjust the tone to match the project:
 - **Libraries/frameworks**: Focus on installation, API, and examples
 - **Applications**: Focus on setup, configuration, and screenshots

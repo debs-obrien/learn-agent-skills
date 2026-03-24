@@ -65,7 +65,7 @@ Keep the first version boring and reliable. Start with local files only. Once th
 Copy this prompt:
 
 ```
-Create .agents/skills/readme-wizard/scripts/scan_project.sh that takes a project directory path and outputs JSON with the project name, description, license, git remote (owner/repo if available), package manager, CI setup, social links found in local project files, and directory structure (top 2 levels). Support detecting package managers for npm, yarn, pnpm, pip, cargo, Go (go.mod/go.sum), Gradle, and Deno. For Go projects, parse go.mod to extract the module path. For the directory structure, exclude hidden folders and files plus tool-specific folders that should not appear in the generated README, such as .git, .agents, .claude, node_modules, dist, and build. Also omit the root `.` entry so the tree is ready to paste into the README without cleanup. Return empty strings or empty arrays for anything the script can't find. Make sure it works on both macOS and Linux. Use portable bash plus Node.js, Python, or standard grep/sed only if needed. Do not call external APIs in this first version. Make it executable and update the SKILL.md to reference it.
+Create .agents/skills/readme-wizard/scripts/scan_project.sh that takes a project directory path and outputs JSON with the project name, description, license, git remote (owner/repo if available), package manager, CI setup, social links found in local project files, and directory structure (top 2 levels). Support detecting package managers for npm, yarn, pnpm, pip, cargo, Go (go.mod/go.sum), Gradle, and Deno. For Go projects, parse go.mod to extract the module path. For the directory structure, exclude hidden folders and files plus tool-specific folders that should not appear in the generated README, such as .git, .agents, .claude, node_modules, dist, and build. Also omit the root `.` entry so the tree is ready to paste into the README without cleanup. Format the tree in a repo-browser style: list directories before files, alphabetize within each group, and add trailing `/` markers to directories. Return empty strings or empty arrays for anything the script can't find. Make sure it works on both macOS and Linux. Use portable bash plus Node.js, Python, or standard grep/sed only if needed. Do not call external APIs in this first version. Make it executable and update the SKILL.md to reference it.
 ```
 
 The agent creates the script and updates the SKILL.md. Now instead of the agent writing scanning code from scratch every time, it runs one script and gets structured JSON back. Faster, more reliable, and it doesn't eat into the context window.
@@ -104,6 +104,7 @@ Those are useful upgrades, but they are not required for the tutorial to succeed
 - Run it with a full path to the project directory
 - If the JSON is malformed, reduce the fields first and get a minimal version working before you add more detection logic
 - If the project tree includes `.agents`, `.claude`, `node_modules`, or other internal folders, tighten your `find` filters before using it in the README
+- If the project tree feels unnatural, sort directories before files so it matches how GitHub and file explorers usually present repos
 
 ## Stuck? Check the Reference Code
 
