@@ -32,13 +32,7 @@ This is the process we'll follow throughout:
 
 Write the skill → test it on a real repo → review the output → find issues and fix them → test again. Repeat until it's good. Then ship it.
 
-## Setup
-
-Before we start, make sure you have:
-
-1. **Node.js** installed (for the skills CLI)
-2. **GitHub Copilot** (with Copilot Chat in VS Code) or **Claude Code** installed
-3. **A project to test against**. Use your own repo, or clone any public repo
+## Setup\n\nIf you haven't already, check the prerequisites in [Tutorial 1](01_build-first-agent-skill.md#-what-youll-need).
 
 
 ## Phase 1: Get Something Working

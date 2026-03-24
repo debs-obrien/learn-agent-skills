@@ -15,7 +15,12 @@ Pick your agent and use the corresponding skill folder path throughout **all 7 t
 
 Once you choose, stick with it consistently. All prompts will use `.agents/` as the example — if you're using Claude Code, swap it to `.claude/` every time you see it.
 
-**Note for Windows Users:** Starting in Tutorial 5, we'll create bash scripts. You'll need **WSL2** (Windows Subsystem for Linux) or **Git Bash** to run them. [Set up WSL2](https://learn.microsoft.com/en-us/windows/wsl/install) now if you don't have it, or you can skip the script sections and have the agent do the work inline instead.
+### 📦 What You'll Need
+
+- **An AI coding agent**: [GitHub Copilot](https://github.com/features/copilot), [Claude Code](https://docs.anthropic.com/en/docs/claude-code), or [Cursor](https://cursor.sh)
+- **Node.js**: needed for the skills CLI in Tutorial 7 (`npx skills add`)
+- **A project to test against**: your own repo, or any public repo you can clone
+- **Windows only**: Starting in Tutorial 5, we create bash scripts. You'll need **WSL2** or **Git Bash** to run them. [Set up WSL2](https://learn.microsoft.com/en-us/windows/wsl/install) now if you don't have it, or you can skip the script sections and have the agent do the work inline instead.
 
 ---
 

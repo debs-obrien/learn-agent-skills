@@ -125,3 +125,5 @@ MIT License — see [LICENSE](LICENSE) for details.
 [![Star History Chart](https://api.star-history.com/svg?repos=debs-obrien/learn-agent-skills&type=Date)](https://star-history.com/#debs-obrien/learn-agent-skills&Date)
 
 </div>
+
+</div>

@@ -57,8 +57,6 @@ Scripts handle deterministic, repeatable tasks that the agent would otherwise re
 
 - **`scan_project.sh`**. Scans a project directory and outputs JSON with the project name, description, license, git remote, social links, directory structure, package manager, and CI configuration. It searches in three layers: local files → GitHub API → homepage crawl.
 
-- **`check_readme.sh`**. Validates a generated README has all the expected sections (headings, badges, code blocks, etc.) and outputs a pass/fail report.
-
 The key insight: **scripts run without being loaded into the agent's context**. The agent executes them and reads the output. This saves tokens. A 200-line bash script doesn't eat into the context window.
 
 ## References
@@ -89,39 +87,7 @@ Evals are test cases that define what "good" looks like. For our README Wizard:
 
 - **`evals.json`**. Contains test prompts and assertions. Each test case has a realistic prompt (like "generate a README for this project") and a list of things the output should contain (badges, quick start section, contributing section, etc.).
 
-Evals are optional but valuable. They're like unit tests for your skill. You can validate the output by running the check script:
-
-```bash
-bash scripts/check_readme.sh /path/to/generated/README.md
-```
-
-```
-🧙 README Wizard: Validation Report
-  File: README.md
-  ────────────────────────────────────
-
-  Structure
-  ✅ Has a top-level heading
-  ✅ Has a project description
-  ✅ Has a Quick Start section
-  ✅ Contains code blocks
-  ✅ Has a project structure section
-  ✅ Has a documentation section
-  ✅ Has a contributing section
-
-  Badges
-  ✅ Has 2+ shields.io badges (7 found)
-  ✅ Uses for-the-badge style
-  ✅ Has social link badges
-
-  Extras
-  ✅ Has star history chart
-  ✅ Has a footer with license info
-  ✅ Has contributor avatars
-
-  ────────────────────────────────────
-  Results: 13 passed, 0 failed
-```
+Evals are optional but valuable. They're like unit tests for your skill — a checklist defining what the output should contain. Each test case has assertions the agent can review the output against to catch issues like placeholder text left in, fabricated badges, or missing sections.
 
 ## Before vs After
 

@@ -93,7 +93,6 @@ You should see clean JSON with all the detected metadata.
 ## Prerequisites and Limits
 
 - The script assumes bash, `grep`, `sed`, and `curl` are available
-- GitHub API lookups can hit rate limits; set `GITHUB_TOKEN` for reliability
 - On Windows, use WSL to run the script
 
 ## Troubleshooting
@@ -103,7 +102,7 @@ You should see clean JSON with all the detected metadata.
   Make the scan_project.sh script executable.
   ```
 - Run it with a full path to the project directory
-- If GitHub API fails, verify your `GITHUB_TOKEN` or remove the API step temporarily
+- If GitHub API fails, check your network connection or remove the API step temporarily
 
 ## Stuck? Check the Reference Code
 
@@ -111,6 +110,6 @@ If your files are getting a little messy or you aren't sure if the folder struct
 
 ## Next Steps
 
-Your skill is now properly structured. Let's add validation and test it end-to-end.
+Your skill is now properly structured. Let's add evals and test it end-to-end.
 
 **Next:** [Tutorial 6: Build the README Wizard — Phase 4 →](06_build-readme-wizard-skill-part_4.md)

@@ -169,7 +169,8 @@ collect_social_links() {
   done
 
   if [[ -n "$SEARCH_FILES" ]]; then
-    YOUTUBE=$(grep -ohiE 'https?://(www\.)?(youtube\.com|youtu\.be)/([@/a-zA-Z0-9_-]+)' $SEARCH_FILES 2>/dev/null | head -1 || echo "")
+    # Match YouTube channel/profile URLs only (not individual video links like youtu.be/ID or watch?v=)
+    YOUTUBE=$(grep -ohiE 'https?://(www\.)?youtube\.com/(@[a-zA-Z0-9_-]+|c/[a-zA-Z0-9_-]+|channel/[a-zA-Z0-9_-]+)' $SEARCH_FILES 2>/dev/null | head -1 || echo "")
     DISCORD=$(grep -ohiE 'https?://(www\.)?discord\.(gg|com/invite)/[a-zA-Z0-9_-]+' $SEARCH_FILES 2>/dev/null | head -1 || echo "")
     TWITTER=$(grep -ohiE 'https?://(www\.)?(twitter\.com|x\.com)/[a-zA-Z0-9_]+' $SEARCH_FILES 2>/dev/null | head -1 || echo "")
     LINKEDIN=$(grep -ohiE 'https?://(www\.)?linkedin\.com/(in|company)/[a-zA-Z0-9_-]+' $SEARCH_FILES 2>/dev/null | head -1 || echo "")
@@ -184,7 +185,7 @@ collect_social_links() {
     if [[ -n "$HOMEPAGE" && "$HOMEPAGE" != "null" ]]; then
       HOMEPAGE_CONTENT=$(curl -sf -L --max-time 10 "$HOMEPAGE" 2>/dev/null || echo "")
       if [[ -n "$HOMEPAGE_CONTENT" ]]; then
-        [[ -z "$YOUTUBE" ]] && YOUTUBE=$(echo "$HOMEPAGE_CONTENT" | grep -ohiE 'https?://(www\.)?(youtube\.com|youtu\.be)/([@/a-zA-Z0-9_-]+)' | head -1 || echo "")
+        [[ -z "$YOUTUBE" ]] && YOUTUBE=$(echo "$HOMEPAGE_CONTENT" | grep -ohiE 'https?://(www\.)?youtube\.com/(@[a-zA-Z0-9_-]+|c/[a-zA-Z0-9_-]+|channel/[a-zA-Z0-9_-]+)' | head -1 || echo "")
         [[ -z "$DISCORD" ]] && DISCORD=$(echo "$HOMEPAGE_CONTENT" | grep -ohiE 'https?://(www\.)?discord\.(gg|com/invite)/[a-zA-Z0-9_-]+' | head -1 || echo "")
         [[ -z "$TWITTER" ]] && TWITTER=$(echo "$HOMEPAGE_CONTENT" | grep -ohiE 'https?://(www\.)?(twitter\.com|x\.com)/[a-zA-Z0-9_]+' | head -1 || echo "")
         [[ -z "$LINKEDIN" ]] && LINKEDIN=$(echo "$HOMEPAGE_CONTENT" | grep -ohiE 'https?://(www\.)?linkedin\.com/(in|company)/[a-zA-Z0-9_-]+' | head -1 || echo "")

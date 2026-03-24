@@ -47,7 +47,12 @@ Read `assets/badges.json` for the full badge catalog organized by category (stat
 
 ### 5. Validate the output
 
-Run `scripts/check_readme.sh <path-to-readme>` to verify the generated README has all expected sections and formatting. Review any failures and fix them. Note: the social links check will skip if the project has no social links — that's expected.
+Review the generated README against the assertions in `evals/evals.json`. Verify:
+- No placeholder text remains (`{{PROJECT_NAME}}`, `TODO`, etc.)
+- All badges point to real shields.io URLs for things that actually exist
+- Sections are proportional to the project — a simple script doesn't need a 200-line README
+- Social badges only appear if social links were found in the scan
+- The tone is concise and direct, not marketing fluff
 
 ### 6. Optionally add a diagram
 

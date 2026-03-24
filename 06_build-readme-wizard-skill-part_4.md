@@ -1,8 +1,8 @@
 # Phase 4: Validate and Finish
 
-**Success check:** Generate a README end-to-end and verify the check script passes.
+**Success check:** Generate a README end-to-end and confirm it has badges, a Quick Start section, a project structure tree, and contributor avatars.
 
-**Prerequisites:** Bash, `grep`, `sed`, and `curl`. If you want GitHub API lookups, set `GITHUB_TOKEN` to avoid rate limits. On Windows, use WSL for the scripts.
+**Prerequisites:** Bash, `grep`, `sed`, and `curl` (for the scan script). On Windows, use WSL for the scripts.
 
 ### Prerequisites Checklist for Phase 4
 
@@ -15,21 +15,7 @@ Before you start, verify you have:
 
 ---
 
-### Step 10: Add a validation script
-
-We want a quick way to check if a generated README has all the expected sections. This is another good use of `scripts/`: a repeatable check that gives us a pass/fail report.
-
-Copy this prompt:
-
-```
-Create .agents/skills/readme-wizard/scripts/check_readme.sh that takes a README file path and validates it has all expected sections: headings, badges, code blocks, project structure, docs, contributing, star history, and contributor avatars. For social links, only check if the project actually has social links — skip the check with a note if none exist (this is expected for projects without social media presence). Format the output as a nice report with ✅ and ❌ and a pass/fail summary. Make sure it works on both macOS and Linux. Make it executable.
-```
-
-The agent creates the validation script. Now we can check any generated README instantly.
-
-(If you skipped Tutorial 5's script section or the script won't run, see "Scripts Must Be Executable" in Tutorial 5 for the fix.)
-
-### Step 11: Add evals
+### Step 10: Add evals
 
 Evals are test cases that define what "good" looks like. Think of them like unit tests for your skill. They're optional but useful for tracking whether changes to the skill improve or break things.
 
@@ -41,7 +27,7 @@ Create .agents/skills/readme-wizard/evals/evals.json with 4 test cases for the r
 
 The agent creates the evals file. You now have a formal definition of what the skill should produce.
 
-### Step 12: Test the final version
+### Step 11: Test the final version
 
 Let's test the fully refactored skill end-to-end. The agent will now use the scan script, read the reference file, pick badges from the catalog, fill in the template, and improve the README.
 
@@ -51,23 +37,20 @@ Copy this prompt:
 Improve the README for this project. Use the readme-wizard skill: run the scan script first, then follow the SKILL.md instructions.
 ```
 
-The agent will follow the 6-step workflow in the SKILL.md:
+The agent will follow the workflow in the SKILL.md:
 1. Run `scripts/scan_project.sh` → get JSON metadata
 2. Read `references/readme-best-practices.md` for guidance on structure, tone, and project-type adaptation
 3. Build the README using `assets/readme-template.md`, adapting sections to the project type
 4. Add badges from `assets/badges.json` — only for things that actually exist
-5. Validate with `scripts/check_readme.sh`
-6. If the project is complex enough, read `assets/diagrams.md` and add a Mermaid diagram
+5. If the project is complex enough, read `assets/diagrams.md` and add a Mermaid diagram
 
-Then validate it.
-
-Copy this prompt:
+Review the output yourself. Does it have the right sections? Are the badges real? Is the tone right? You can also ask the agent to validate:
 
 ```
-Run the check_readme.sh script against the generated README and show me the validation report.
+Review the generated README against the assertions in evals/evals.json. Check for placeholder text, fabricated badges, missing sections, or unnecessary bloat.
 ```
 
-If everything passes, great! If something fails, that's the build loop in action. Fix the issue and test again.
+If something's wrong, that's the build loop in action. Fix the issue and test again.
 
 ## Troubleshooting
 
@@ -75,12 +58,13 @@ If everything passes, great! If something fails, that's the build loop in action
 - Ensure badges are shields.io and use `style=for-the-badge`
 - If a section is missing (docs, contributors, star history), update the SKILL.md rules and re-run
 
-When we built this skill, we went through several rounds of fixes:
+### Bugs we found and fixed during development
+
+When we built this skill, we went through several rounds of fixes. These are common issues you might hit too:
 - **Git remote parsing**: HTTPS URLs weren't extracting owner/repo correctly
 - **CI workflow detection**: it missed workflow files with non-standard names like `playwright.yml`
 - **YouTube URL formats**: the regex only handled `/@handle` but not `/c/name`
 - **Social link guessing**: the agent invented social media handles that didn't exist
-- **Social link checks failing**: the validation script marked social links as ❌ even for projects that don't have any — fixed by making the check conditional
 
 Each bug led to a fix in the scan script and a new rule in the SKILL.md. That's normal. Skills get better through iteration.
 
@@ -90,10 +74,9 @@ Look at your skill folder now:
 
 ```
 .agents/skills/readme-wizard/
-├── SKILL.md                    ← the brain (lean 6-step workflow)
+├── SKILL.md                    ← the brain (lean workflow)
 ├── scripts/
-│   ├── scan_project.sh         ← mechanical work (runs without loading)
-│   └── check_readme.sh         ← validation (conditional social check)
+│   └── scan_project.sh         ← mechanical work (runs without loading)
 ├── references/
 │   └── readme-best-practices.md  ← domain knowledge (includes project-type adaptation)
 ├── evals/
