@@ -21,7 +21,7 @@ Run `scripts/scan_project.sh <project-directory>` to collect structured JSON met
 - **Social links** (YouTube, Discord, Twitter, LinkedIn, Bluesky, Twitch)
 - **Directory structure** (top 2 levels)
 
-The script checks local files first, then the GitHub API for the homepage URL, then crawls the homepage for social links. It resolves YouTube channel IDs and Discord server IDs for live count badges.
+ The reference script checks local files first, then uses the GitHub API to look up the homepage URL and crawls that homepage for additional social links. Your own first version can stay local-file only and add this enrichment later if you want it.
 
 **Handling missing data:** The scan will return empty strings for anything it can't find. Never fabricate metadata — if a field is empty, skip the related section or badge entirely. For example: no CI workflows means no build badge; no social links means no social section.
 
