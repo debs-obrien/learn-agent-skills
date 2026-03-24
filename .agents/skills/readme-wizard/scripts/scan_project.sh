@@ -39,9 +39,10 @@ elif [[ -f pyproject.toml ]]; then
   PROJECT_NAME=$(grep -m1 '^name' pyproject.toml | sed 's/name[[:space:]]*=[[:space:]]*"//;s/"$//')
   DESCRIPTION=$(grep -m1 '^description' pyproject.toml | sed 's/description[[:space:]]*=[[:space:]]*"//;s/"$//')
 elif [[ -f go.mod ]]; then
-  # Go module name is the module path; use the last segment as project name
-  MODULE_PATH=$(grep -m1 '^module' go.mod | sed 's/module[[:space:]]*//')
-  PROJECT_NAME=$(basename "$MODULE_PATH")
+  # Go module paths can end with a semantic import version like /v2; strip it before deriving the repo name.
+  MODULE_PATH=$(grep -m1 '^module' go.mod | sed 's/module[[:space:]]*//; s|//.*$||; s/^[[:space:]]*//; s/[[:space:]]*$//')
+  CLEANED_MODULE_PATH=$(printf '%s' "$MODULE_PATH" | sed -E 's@/v[0-9]+$@@')
+  PROJECT_NAME=$(basename "$CLEANED_MODULE_PATH")
 fi
 
 # Fallback: use directory name

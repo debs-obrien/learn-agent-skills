@@ -57,7 +57,7 @@ The body should be under 500 lines. If you need more detail, put it in reference
 
 Scripts handle deterministic, repeatable tasks that the agent would otherwise reinvent every time. For our README Wizard:
 
-- **`scan_project.sh`**. Scans a project directory and outputs JSON with the project name, description, license, git remote, social links, directory structure, package manager, and CI configuration. Your first version can stay local-file only. The finished reference version can be extended later with richer metadata lookups.
+ - **`scan_project.sh`**. Scans a project directory and outputs JSON with the project name, description, license, git remote, social links, directory structure, package manager, and CI configuration. Your first version can stay local-file only. The reference implementation in this repo also shows how you can add richer metadata lookups later with GitHub API and homepage enrichment.
 
 The key insight: **scripts run without being loaded into the agent's context**. The agent executes them and reads the output. This saves tokens. A 200-line bash script doesn't eat into the context window.
 
