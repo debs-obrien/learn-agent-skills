@@ -8,15 +8,15 @@ Now we're going to break the bloated SKILL.md into separate files. Each extracti
 
 ### Step 6: Extract best practices → `references/`
 
-The best practices section is 40+ lines of writing guidance. The agent only needs this when it's about to write the README, not every time the skill loads. By moving it to a reference file, the agent reads it on demand instead of loading it into context upfront. This is what the `references/` folder is for: domain knowledge that loads only when needed.
+The best practices section is 40+ lines of writing guidance — structure, tone, project-type adaptation, common pitfalls. The agent only needs this when it's about to write the README, not every time the skill loads. By moving it to a reference file, the agent reads it on demand instead of loading it into context upfront. This is what the `references/` folder is for: domain knowledge that loads only when needed.
 
 Copy this prompt:
 
 ```
-The best practices section in our SKILL.md is making the file too long. Move it into a new file at .agents/skills/readme-wizard/references/readme-best-practices.md. Include a table of contents at the top. Then update the SKILL.md to replace that section with a single line: "Read references/readme-best-practices.md for guidance on structure, tone, and what makes a README great."
+The best practices section in our SKILL.md is making the file too long. Move it into a new file at .agents/skills/readme-wizard/references/readme-best-practices.md. Include a table of contents at the top with sections for Structure and Order, Writing Tone, Adapting to Project Type, Badge Best Practices, and Common Pitfalls. Then update the SKILL.md to tell the agent: "Read references/readme-best-practices.md before writing. It covers structure, tone, project-type adaptation, and common pitfalls."
 ```
 
-The agent creates the reference file and updates the SKILL.md. Open both files. Notice how the SKILL.md is shorter and focused on the steps, while the reference file has all the deep knowledge about README writing.
+The agent creates the reference file and updates the SKILL.md. Open both files. Notice how the SKILL.md is shorter and focused on the workflow steps, while the reference file has all the deep knowledge about README writing — including how to adapt the output for different project types and what mistakes to avoid.
 
 ### Step 7: Extract badge templates → `assets/`
 
@@ -39,7 +39,7 @@ This is also a good example of **selective loading**. Not every project needs an
 Copy this prompt:
 
 ```
-Move the README template from SKILL.md into .agents/skills/readme-wizard/assets/readme-template.md with {{PLACEHOLDER}} markers for dynamic content. Also move the Mermaid diagram templates into .agents/skills/readme-wizard/assets/diagrams.md with templates for common project types. Update the SKILL.md to reference both files.
+Move the README template from SKILL.md into .agents/skills/readme-wizard/assets/readme-template.md with {{PLACEHOLDER}} markers for dynamic content. For the social links section, use an HTML comment that says to include the section ONLY if the project has social links and remove it entirely if none exist, with the heading "Connect". Also move the Mermaid diagram templates into .agents/skills/readme-wizard/assets/diagrams.md with templates for common project types. Update the SKILL.md to tell the agent to use the template as the base structure, replace placeholders with actual project data, and adapt rather than copy blindly — dropping sections that don't apply and adjusting tone to match the project type.
 ```
 
 The agent creates both asset files and updates the SKILL.md. The instructions now say "use this template" and "pick a diagram from these templates" instead of embedding them inline.
@@ -51,7 +51,7 @@ Here's a big one. Every time we test the skill, the agent writes the same code t
 Copy this prompt:
 
 ```
-Create .agents/skills/readme-wizard/scripts/scan_project.sh that takes a project directory path and outputs JSON with everything we need: project name, description, license, git remote (owner/repo), package manager, CI setup, social links, and directory structure. For social links, search local project files first, then the GitHub API for the homepage URL, then crawl the homepage for links in the footer. Also resolve YouTube channel IDs and Discord server IDs so we can use live count badges. Make sure it works on both macOS and Linux. Use Node.js, Python, or standard grep/sed to parse files so it works without requiring external libraries like jq. Make it executable and update the SKILL.md to reference it.
+Create .agents/skills/readme-wizard/scripts/scan_project.sh that takes a project directory path and outputs JSON with everything we need: project name, description, license, git remote (owner/repo), package manager, CI setup, social links, and directory structure (top 2 levels). Support detecting package managers for npm, yarn, pnpm, pip, cargo, Go (go.mod/go.sum), Gradle, and Deno. For Go projects, parse go.mod to extract the project name from the module path. For social links, search local project files first, then the GitHub API for the homepage URL, then crawl the homepage for links in the footer. Also resolve YouTube channel IDs and Discord server IDs so we can use live count badges. Return empty strings for anything the script can't find. Make sure it works on both macOS and Linux. Use Node.js, Python, or standard grep/sed to parse files so it works without requiring external libraries like jq. Make it executable and update the SKILL.md to reference it.
 ```
 
 The agent creates the script and updates the SKILL.md. Now instead of the agent writing scanning code from scratch every time, it runs one script and gets structured JSON back. Faster, more reliable, and it doesn't eat into the context window.

@@ -53,11 +53,11 @@ Let's start simple. We want a skill that improves a project's README by adding b
 Copy this prompt:
 
 ```
-Replace the contents of .agents/skills/readme-wizard/SKILL.md with a skill that improves project READMEs. The frontmatter should have name: readme-wizard and a description that tells the agent to use this skill whenever someone mentions README, badges, project documentation, or making their repo look professional.
+Replace the contents of .agents/skills/readme-wizard/SKILL.md with a skill that generates or improves project READMEs. The frontmatter should have name: readme-wizard and a description that tells the agent to use this skill whenever someone mentions README, wants to improve their repo's first impression, asks about shields.io badges, star history charts, contributor avatars, documentation tables, project structure trees, or mermaid architecture diagrams — even if they never say the word "README".
 
 The body should tell the agent to:
-1. Detect the project name, description, license, git remote, package manager, and CI setup by reading the project files
-2. Improve the README to include: a centered hero section with the project name and tagline, shields.io badges (license, version, CI, stars) using style=for-the-badge, a "What is this?" section, a Quick Start section with real install/run commands, a project structure tree, a documentation table, a contributing section with contributor avatars from contrib.rocks, social link badges, and a footer with a star history chart
+1. Detect the project name, description, license, git remote, package manager (npm, yarn, pnpm, pip, cargo, go, etc.), and CI setup by reading the project files
+2. Improve the README to include: a centered hero section with the project name and tagline, shields.io badges (license, version, CI, stars) using style=for-the-badge, a "What is this?" section, a Quick Start section with real install/run commands, a project structure tree, a documentation table, a contributing section with contributor avatars from contrib.rocks, social link badges (only if social links exist), and a footer with a star history chart
 ```
 
 The agent writes a SKILL.md with all the instructions inline. Open it and take a look. It should be around 30-50 lines of clear, step-by-step instructions.
